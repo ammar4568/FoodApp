@@ -13,6 +13,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './/app-routing.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +27,9 @@ import { AppRoutingModule } from './/app-routing.module';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

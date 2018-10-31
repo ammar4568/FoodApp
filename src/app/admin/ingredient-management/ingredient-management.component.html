@@ -1,0 +1,126 @@
+<div class="container" style="margin: 30px auto">
+
+  <!-- Category Modal -->
+  <!-- Button trigger modal -->
+  <button style="margin: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal">
+    Add Category
+  </button>
+
+  <!-- Category Modal -->
+  <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="categoryModalLabel">Add Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addCategory()" [formGroup]="categoryForm" style=" margin: 30px 30px;">
+            <div class="form-group">
+              <label for="inputCategory">Category</label>
+              <input type="text" class="form-control" id="inputCategory" placeholder="Category" formControlName="name">
+            </div>
+            <div *ngIf="loadingCategory" class="loader"></div>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close2</button>
+          <!-- <button type="button" class="btn btn-primary">Add Cateogry</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Category Modal Finish -->
+
+  <button type="button" style="margin: 10px" class="btn btn-primary" data-toggle="modal" data-target="#ingredientModal">
+    Add Ingredient
+  </button>
+
+  <!-- Ingredient Modal -->
+  <div class="modal fade" id="ingredientModal" tabindex="-1" role="dialog" aria-labelledby="ingredientModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ingredientModalLabel">Add Ingredient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addIngredient()" [formGroup]="ingredientForm" style="margin: 30px 30px;">
+            <div class="form-group">
+              <label for="inputIngredientCategory">Select Category</label>
+              <select class="form-control" id="inputIngredientCategory" formControlName="category">
+                <option *ngFor="let category of categories | async">{{category.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inputIngredientName">Ingredient Name</label>
+              <input type="text" class="form-control" id="inputIngredientName" placeholder="Ingredient Name"
+                formControlName="name">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputServingSize">Serving Size</label>
+                  <input type="number" class="form-control" id="inputServingSize" placeholder="Serving Size"
+                    formControlName="servingSize">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputPortionSize">Portion Size</label>
+                  <input type="number" class="form-control" id="inputPortionSize" placeholder="Portion Size"
+                    formControlName="portionSize">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputCarbCalories">Carb Calories</label>
+                  <input type="number" class="form-control" id="inputCarbCalories" placeholder="Carb Calories"
+                    formControlName="carbCalorie">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputFatCalories">Fat Calories</label>
+                  <input type="number" class="form-control" id="inputFatCalories" placeholder="Fat Calories"
+                    formControlName="fatCalorie">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputProteinCalories">Protein Calories</label>
+                  <input type="number" class="form-control" id="inputProteinCalories" placeholder="Protein Calories"
+                    formControlName="proteinCalorie">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputCalories">Calories</label>
+                  <input type="number" class="form-control" id="inputCalories" placeholder="Calories" formControlName="calories">
+                </div>
+              </div>
+            </div>
+            <div *ngIf="loadingIngredient" class="loader"></div>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Add Ingredient</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Ingredient Modal Finish -->
+</div>
