@@ -13,9 +13,19 @@ export class IngredientService {
     return this.afs.collection('ingredients').add(formValue);
   }
 
-  getIngredients() {
+  /* getIngredients() {
     return this.afs.collection('ingredients').valueChanges();
+    // return this.afs.collection('ingredients', ref => ref.limit(5)).valueChanges();
+    // return this.afs.collection('ingredients', ref => ref.startAt(ref)).valueChanges();
+  } */
+
+  getIngredients(startIndex, resultLimit) {
+    // return this.afs.collection('ingredients', ref => ref.limit(5)).valueChanges();
+    return this.afs
+      .collection('ingredients', ref => ref.orderBy('name')).valueChanges();
   }
+
+
 
   getIngredient(name) {
     // return this.afs.collection('ingredients', ref => ref.where('name', '==', name)).valueChanges();
@@ -36,8 +46,8 @@ export class IngredientService {
     return this.afs.collection('ingredients', ref => ref.where('name', '==', name)).snapshotChanges();
   }
 
-  async editIngredient(name, values) {
-    this.afs.doc(`ingredients/${name}`)
+  async editIngredient(id, values) {
+    this.afs.doc(`ingredients/${id}`)
       .update(values).then((res) => {
         return res;
       })
@@ -50,5 +60,16 @@ export class IngredientService {
     .catch((err) => {
       return err;
     }); */
+  }
+
+  async deleteIngredient(id) {
+    this.afs.doc(`ingredients/${id}`)
+      .delete()
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
   }
 }

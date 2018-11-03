@@ -16,12 +16,22 @@ export class IngredientManagementComponent implements OnInit {
   ingredientForm: FormGroup;
   categoryForm: FormGroup;
   categories;
-  loadingCategory = true;
+  ingredients;
+  loadingCategory = false;
   loadingIngredient = false;
+  edit = false;
+  ingredientToEdit;
+  ingredientToDelete;
+  ingredientStartIndex;
+  ingredientLimit;
 
   constructor(private fb: FormBuilder,
     private ingredientService: IngredientService,
     private categoryService: CategoryService) {
+
+    this.ingredientStartIndex = 0;
+    this.ingredientLimit = 5;
+
     this.ingredientForm = this.fb.group({
       name: '',
       servingSize: '',
@@ -41,12 +51,58 @@ export class IngredientManagementComponent implements OnInit {
     });
 
     this.categories = this.categoryService.getCategories();
+    this.ingredients = this.ingredientService.getIngredients(this.ingredientStartIndex, this.ingredientLimit);
+
   }
 
   ngOnInit() {
   }
 
   addIngredient() {
+    if (this.edit) {
+      this.updateIngredient();
+    } else {
+      this.loadingIngredient = true;
+      // TODO: For testing remove afterwards
+      this.ingredientForm = this.fb.group({
+        name: 'Test',
+        servingSize: 10,
+        portionSize: 1,
+        portionFlag: '',
+        calories: 100,
+        carbCalorie: 30,
+        fatCalorie: 50,
+        proteinCalorie: 20,
+        rda: '',
+        bitternessFlat: '',
+        category: 'Test Category'
+      });
+      this.ingredientService.addIngredient(this.ingredientForm.value)
+        .then((response) => {
+          console.log(response);
+          this.loadingIngredient = false;
+        })
+        .catch((err) => {
+          console.log(err);
+          this.loadingIngredient = false;
+        });
+    }
+  }
+
+  addCategory() {
+    this.loadingCategory = true;
+    this.categoryService.addCategory(this.categoryForm.value)
+      .then((response) => {
+        this.loadingCategory = false;
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+        this.loadingCategory = false;
+      });
+  }
+
+  /* addIngredient() {
     this.loadingIngredient = true;
     this.ingredientService.addIngredient(this.ingredientForm.value)
       .then((response) => {
@@ -70,5 +126,62 @@ export class IngredientManagementComponent implements OnInit {
         console.log(err);
         this.loadingCategory = false;
       });
+  } */
+
+  editIngredient(ingredient) {
+    this.ingredientForm = this.fb.group(ingredient);
+    // console.log(ingredient);
+    this.edit = true;
+    this.ingredientToEdit = ingredient.name;
+    /* this.ingredientService.getIngredient(ingredient.name).subscribe((item) => {
+          console.log(item);
+        }); */
+  }
+
+  updateIngredient() {
+    this.ingredientService.getIngredient(this.ingredientToEdit).subscribe(item => {
+      item.map(i => {
+        const id = i.payload.doc.id;
+
+        console.log(this.ingredientService.editIngredient(id, this.ingredientForm.value));
+        /* .then((res) => {
+          return res;
+        })
+        .catch((err) => {
+          return err;
+        }); */
+      });
+    });
+  }
+
+
+  add() {
+    this.ingredientForm = this.fb.group({
+      name: '',
+      servingSize: '',
+      portionSize: '',
+      portionFlag: '',
+      calories: '',
+      carbCalorie: '',
+      fatCalorie: '',
+      proteinCalorie: '',
+      rda: '',
+      bitternessFlat: '',
+      category: ''
+    });
+    this.edit = false;
+  }
+
+  deleteIngredient(ingredient) {
+    this.ingredientToDelete = ingredient.name;
+  }
+
+  delete() {
+    this.ingredientService.getIngredient(this.ingredientToDelete).subscribe(item => {
+      item.map(i => {
+        const id = i.payload.doc.id;
+        console.log(this.ingredientService.deleteIngredient(id));
+      });
+    });
   }
 }

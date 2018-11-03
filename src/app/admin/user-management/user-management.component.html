@@ -1,3 +1,63 @@
-<p>
-  user-management works!
-</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-7" style="margin-top: 8px;">
+        <h3 class="panel-title">User Management</h3>
+        <span *ngIf="!customers"> (Staff)</span>
+        <span *ngIf="customers"> (Customers)</span>
+      </div>
+      <div class="col-md-2" *ngIf="!customers">
+        <button class=" btn btn-success" (click)="showCustomers()">
+          Show Customers
+        </button>
+      </div>
+      <div class="col-md-2" *ngIf="customers">
+        <button class="btn btn-success" (click)="showStaff()">
+          Show Staff
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Display Name</th>
+          <th>Email Name</th>
+          <th>Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | async">
+          <td>{{user.displayName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phone}}</td>
+          <td>
+            <div class="onoffswitch">
+              <input type="checkbox" (click)="changeType(user, $event)" name="onoffswitch" class="onoffswitch-checkbox"
+                id="myonoffswitch" checked="{{user.isAdmin? 'checked': ''}}">
+              <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+              </label>
+            </div>
+            <!-- <div class="col-sm-5">
+              <button type="button" (click)="clicked(user)" class="btn btn-toggle active" data-toggle="button"
+                aria-pressed="false" autocomplete="off">
+                <div class="handle"></div>
+              </button>
+            </div> -->
+          </td>
+          <!-- <td>
+            <a (click)=editIngredient(ingredient) data-toggle="modal" data-target="#ingredientModal">
+              Edit
+            </a>
+            <a (click)=deleteIngredient(ingredient) data-toggle="modal" data-target="#deleteModal">
+              Delete</a>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AdminModule } from './admin/admin.module';
+import { CustomerModule } from './customer/customer.module';
 import { AppRoutingModule } from './/app-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     AdminModule,
+    CustomerModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

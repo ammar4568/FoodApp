@@ -50,6 +50,7 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
+      isAdmin: false
     };
     userRef.set(data);
   }

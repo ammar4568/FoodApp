@@ -5,4 +5,5 @@ export interface User {
   displayName?: string;
   phone?: string;
   address?: string;
+  isAdmin?: boolean;
 }
