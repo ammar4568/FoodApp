@@ -1,4 +1,997 @@
 /* You can add global styles to this file, and also import other style files */
-/* @import '~bootstrap/dist/css/bootstrap.min.css' */
-@import '~font-awesome/css/font-awesome.css';
 
+/* @import '~bootstrap/dist/css/bootstrap.min.css' */
+
+@import '~font-awesome/css/font-awesome.css';
+@import url("./assets/css/elegant_font/elegant_font.min.css");
+@import url("./assets/css/fontello/css/fontello.css");
+/* Animate */
+
+@import url("./assets/css/animate.min.css");
+/* Main Bootstrap */
+
+@import url("./assets/css/bootstrap.min.css");
+/* Menu styles */
+
+@import url("./assets/css/menu.css");
+/* Main theme styles */
+
+@import url("./assets/css/style.css");
+/* Responsive */
+
+@import url("./assets/css/responsive.css");
+/* Icon pack */
+
+@import url("./assets/css/elegant_font/elegant_font.min.css");
+/* Icon pack */
+
+@import url("./assets/css/fontello/css/fontello.min.css");
+/* Lightbox & dialog script */
+
+@import url("./assets/css/magnific-popup.css");
+/* Popup Advertising */
+
+@import url("./assets/css/pop_up.css");
+/* Your custom css in order to apply updates easly */
+
+@import url("./assets/css/custom.css");
+/*
+
+
+/*-------- Tabs --------*/
+
+.tabs {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.tabs nav {
+    text-align: left;
+    margin-top: 0;
+    padding-top: 0;
+    margin-left: 45px;
+}
+
+.tabs nav ul {
+    padding: 0;
+    margin: 0;
+    margin-bottom: -6px;
+    list-style: none;
+    display: inline-block;
+}
+
+.tabs nav ul li {
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin: 0 0.25em;
+    display: block;
+    float: left;
+    position: relative;
+}
+
+.tabs nav li.tab-current {
+    border: 1px solid #ededed;
+    box-shadow: inset 0 2px #ededed;
+    border-bottom: none;
+    z-index: 100;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.tabs nav li.tab-current:before, .tabs nav li.tab-current:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    right: 100%;
+    bottom: 0;
+    width: 1000px;
+    background: #ededed;
+}
+
+.tabs nav li.tab-current:after {
+    right: auto;
+    left: 100%;
+    width: 4000px;
+}
+
+.tabs nav li.tab-current a {
+    color: #444;
+}
+
+.tabs nav a {
+    color: #999;
+    display: block;
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 3.5;
+    padding: 0 1.25em;
+    font-weight: 500;
+    white-space: nowrap;
+    background-color: #fff;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.tabs nav a:hover {
+    color: #333;
+}
+
+.content section:before, .content section:after {
+    content: '';
+    display: table;
+}
+
+.content section:after {
+    clear: both;
+}
+
+/* Fallback example */
+
+.no-js .content section {
+    display: block;
+    padding-bottom: 2em;
+    border-bottom: 1px solid #47a3da;
+}
+
+.content section.content-current {
+    display: block;
+}
+
+/* Icons */
+
+.tabs nav a:before {
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: none;
+    font-size: 20px;
+    font-weight: normal;
+    font-variant: normal;
+    font-family: 'ElegantIcons';
+    color: #78cfcf;
+    line-height: 1;
+    speak-as: none;
+    -webkit-font-smoothing: antialiased;
+    margin: -0.25em 0.4em 0 0;
+}
+
+.icon-profile:before {
+    content: "\e009";
+}
+
+.icon-settings:before {
+    content: "\67";
+}
+
+.icon-menut-items:before {
+    content: "\68";
+}
+
+/*-------- Content  --------*/
+
+.content section {
+    padding: 30px 30px 45px 30px;
+    display: none;
+    max-width: 1230px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    border-top: none;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5 px;
+}
+
+.content section label {
+    color: #777;
+}
+
+.indent_title_in {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 20px;
+}
+
+.indent_title_in i {
+    font-size: 36px;
+    position: absolute;
+    left: 0;
+    color: #ec008c;
+    top: 0;
+}
+
+.indent_title_in p {
+    color: #777;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper_indent {
+    padding-left: 60px;
+}
+
+hr.styled_2 {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+/*Menu tab*/
+
+.menu-item-section {
+    background-color: #f8f8f8;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    clear: both;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.menu-item-section h4 {
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    color: #777;
+}
+
+.menu-item-section div {
+    float: right;
+    font-size: 18px;
+}
+
+.menu-item-section div a {
+    margin: 5px 0 0 5px;
+    display: inline-block;
+}
+
+.strip_menu_items {
+    margin-bottom: 15px;
+}
+
+.strip_menu_items h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    top: 10px;
+    padding-left: 65px;
+}
+
+.strip_menu_items h3 span {
+    color: #999;
+    display: block;
+    font-size: 11px !important;
+}
+
+/*Settings tab*/
+
+.table.notifications td, .table.edit-options td {
+    vertical-align: middle;
+}
+
+.table.notifications td label.margin_left, .table.edit-options td label.margin_left {
+    margin-left: 15px !important;
+}
+
+.table.notifications td label, .table.edit-options td label {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/*Main info tab*/
+
+.upload-drop-zone {
+    height: 200px;
+    border-width: 2px;
+    margin-bottom: 20px;
+}
+
+.upload-drop-zone {
+    color: #ccc;
+    border-style: dashed;
+    border-color: #ccc;
+    line-height: 200px;
+    text-align: center
+}
+
+.upload-drop-zone.drop {
+    color: #222;
+    border-color: #222;
+}
+
+/*-------- Media queries --------*/
+
+@media screen and (max-width: 1200px) {
+    .table.notifications td label.margin_left, .table.edit-options td label.margin_left {
+        margin-left: 0 !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .tabs nav {
+        margin-left: 25px;
+    }
+    .tabs nav a span {
+        display: none;
+    }
+    .tabs nav a:before {
+        margin-right: 0;
+    }
+    ul.info_booking {
+        padding: 30px 0 15px 0;
+        border-right: none;
+        text-align: left;
+    }
+    .booking_buttons {
+        margin-top: 0;
+    }
+    .content section {
+        padding: 25px;
+    }
+    .profile_pic {
+        float: none;
+    }
+    .indent_title_in {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+    .indent_title_in i {
+        font-size: 45px;
+        position: static;
+        margin-bottom: 10px;
+    }
+    .wrapper_indent {
+        padding-left: 0;
+    }
+    hr.styled_2 {
+        margin-top: 25px;
+        margin-bottom: 30px;
+        margin-left: -25px;
+        margin-right: -25px;
+    }
+    .table.notifications td label.margin_left, .table.edit-options td label.margin_left {
+        margin-left: 0 !important;
+    }
+}
+
+/* iCheck plugin Square skin, grey
+----------------------------------- */
+
+.icheckbox_square-grey, .iradio_square-grey {
+    display: inline-block;
+    *display: inline;
+    vertical-align: middle;
+    margin: 0 10px 2px 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    /* background: url(grey.png) no-repeat; */
+    border: none;
+    cursor: pointer;
+}
+
+.icheckbox_square-grey {
+    background-position: 0 0;
+}
+
+.icheckbox_square-grey.hover {
+    background-position: -24px 0;
+}
+
+.icheckbox_square-grey.checked {
+    background-position: -48px 0;
+}
+
+.icheckbox_square-grey.disabled {
+    background-position: -72px 0;
+    cursor: default;
+}
+
+.icheckbox_square-grey.checked.disabled {
+    background-position: -96px 0;
+}
+
+.iradio_square-grey {
+    background-position: -120px 0;
+}
+
+.iradio_square-grey.hover {
+    background-position: -144px 0;
+}
+
+.iradio_square-grey.checked {
+    background-position: -168px 0;
+}
+
+.iradio_square-grey.disabled {
+    background-position: -192px 0;
+    cursor: default;
+}
+
+.iradio_square-grey.checked.disabled {
+    background-position: -216px 0;
+}
+
+/* HiDPI support */
+
+@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    .icheckbox_square-grey, .iradio_square-grey {
+        /* background-image: url(grey@2x.png); */
+        -webkit-background-size: 240px 24px;
+        background-size: 240px 24px;
+    }
+}
+
+/* Dropzone - a custom file upload */
+
+.dropzone, .dropzone *, .dropzone-previews, .dropzone-previews * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.dropzone {
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 1em
+}
+
+.dropzone.dz-clickable {
+    cursor: pointer
+}
+
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message span {
+    cursor: pointer
+}
+
+.dropzone.dz-clickable * {
+    cursor: default
+}
+
+.dropzone .dz-message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none
+}
+
+.dropzone.dz-drag-hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.04)
+}
+
+.dropzone.dz-started .dz-message {
+    display: none
+}
+
+.dropzone .dz-preview, .dropzone-previews .dz-preview {
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+    display: inline-block;
+    margin: 17px;
+    vertical-align: top;
+    border: 1px solid #acacac;
+    padding: 6px
+}
+
+.dropzone .dz-preview.dz-file-preview [data-dz-thumbnail], .dropzone-previews .dz-preview.dz-file-preview [data-dz-thumbnail] {
+    display: none
+}
+
+.dropzone .dz-preview .dz-details, .dropzone-previews .dz-preview .dz-details {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background: #ebebeb;
+    padding: 5px;
+    margin-bottom: 22px
+}
+
+.dropzone .dz-preview .dz-details .dz-filename, .dropzone-previews .dz-preview .dz-details .dz-filename {
+    overflow: hidden;
+    height: 100%
+}
+
+.dropzone .dz-preview .dz-details img, .dropzone-previews .dz-preview .dz-details img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px
+}
+
+.dropzone .dz-preview .dz-details .dz-size, .dropzone-previews .dz-preview .dz-details .dz-size {
+    position: absolute;
+    bottom: -28px;
+    left: 3px;
+    height: 28px;
+    line-height: 28px
+}
+
+.dropzone .dz-preview.dz-error .dz-error-mark, .dropzone-previews .dz-preview.dz-error .dz-error-mark {
+    display: block
+}
+
+.dropzone .dz-preview.dz-success .dz-success-mark, .dropzone-previews .dz-preview.dz-success .dz-success-mark {
+    display: block
+}
+
+.dropzone .dz-preview:hover .dz-details img, .dropzone-previews .dz-preview:hover .dz-details img {
+    display: none
+}
+
+.dropzone .dz-preview .dz-success-mark, .dropzone-previews .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark, .dropzone-previews .dz-preview .dz-error-mark {
+    display: none;
+    z-index: 999;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    text-align: center;
+    right: -10px;
+    top: -10px
+}
+
+.dropzone .dz-preview .dz-success-mark, .dropzone-previews .dz-preview .dz-success-mark {
+    color: #8cc657
+}
+
+.dropzone .dz-preview .dz-error-mark, .dropzone-previews .dz-preview .dz-error-mark {
+    color: #ee162d
+}
+
+.dropzone .dz-preview .dz-progress, .dropzone-previews .dz-preview .dz-progress {
+    position: absolute;
+    top: 100px;
+    left: 6px;
+    right: 6px;
+    height: 6px;
+    background: #d7d7d7;
+    display: none
+}
+
+.dropzone .dz-preview .dz-progress .dz-upload, .dropzone-previews .dz-preview .dz-progress .dz-upload {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: #8cc657
+}
+
+.dropzone .dz-preview.dz-processing .dz-progress, .dropzone-previews .dz-preview.dz-processing .dz-progress {
+    display: block
+}
+
+.dropzone .dz-preview .dz-error-message, .dropzone-previews .dz-preview .dz-error-message {
+    display: none;
+    position: absolute;
+    top: -5px;
+    left: -20px;
+    background: rgba(245, 245, 245, 0.8);
+    padding: 8px 10px;
+    color: #800;
+    min-width: 140px;
+    max-width: 500px;
+    z-index: 500
+}
+
+.dropzone .dz-preview:hover.dz-error .dz-error-message, .dropzone-previews .dz-preview:hover.dz-error .dz-error-message {
+    display: block
+}
+
+.dropzone {
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    min-height: 360px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.03);
+    padding: 23px
+}
+
+.dropzone .dz-default.dz-message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    -webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    -ms-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    position: absolute;
+    width: 428px;
+    height: 123px;
+    margin-left: -214px;
+    margin-top: -61.5px;
+    top: 50%;
+    left: 50%
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.51), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
+    .dropzone .dz-default.dz-message {
+        -webkit-background-size: 428px 406px;
+        -moz-background-size: 428px 406px;
+        background-size: 428px 406px
+    }
+}
+
+.dropzone .dz-default.dz-message span {
+    display: none
+}
+
+.dropzone.dz-square .dz-default.dz-message {
+    background-position: 0 -123px;
+    width: 268px;
+    margin-left: -134px;
+    height: 174px;
+    margin-top: -87px
+}
+
+.dropzone.dz-drag-hover .dz-message {
+    opacity: .15;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=15);
+    filter: alpha(opacity=15)
+}
+
+.dropzone.dz-started .dz-message {
+    display: block;
+    opacity: 0;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0)
+}
+
+.dropzone .dz-preview, .dropzone-previews .dz-preview {
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16);
+    font-size: 14px
+}
+
+.dropzone .dz-preview.dz-image-preview:hover .dz-details img, .dropzone-previews .dz-preview.dz-image-preview:hover .dz-details img {
+    display: block;
+    opacity: .1;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=10);
+    filter: alpha(opacity=10)
+}
+
+.dropzone .dz-preview.dz-success .dz-success-mark, .dropzone-previews .dz-preview.dz-success .dz-success-mark {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none
+}
+
+.dropzone .dz-preview.dz-error .dz-error-mark, .dropzone-previews .dz-preview.dz-error .dz-error-mark {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none
+}
+
+.dropzone .dz-preview.dz-error .dz-progress .dz-upload, .dropzone-previews .dz-preview.dz-error .dz-progress .dz-upload {
+    background: #ee1e2d
+}
+
+.dropzone .dz-preview .dz-error-mark, .dropzone-previews .dz-preview .dz-error-mark, .dropzone .dz-preview .dz-success-mark, .dropzone-previews .dz-preview .dz-success-mark {
+    display: block;
+    opacity: 0;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity .4s ease-in-out;
+    -moz-transition: opacity .4s ease-in-out;
+    -o-transition: opacity .4s ease-in-out;
+    -ms-transition: opacity .4s ease-in-out;
+    transition: opacity .4s ease-in-out;
+    background-repeat: no-repeat
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.51), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
+    .dropzone .dz-preview .dz-error-mark, .dropzone-previews .dz-preview .dz-error-mark, .dropzone .dz-preview .dz-success-mark, .dropzone-previews .dz-preview .dz-success-mark {
+        -webkit-background-size: 428px 406px;
+        -moz-background-size: 428px 406px;
+        background-size: 428px 406px
+    }
+}
+
+.dropzone .dz-preview .dz-error-mark span, .dropzone-previews .dz-preview .dz-error-mark span, .dropzone .dz-preview .dz-success-mark span, .dropzone-previews .dz-preview .dz-success-mark span {
+    display: none
+}
+
+.dropzone .dz-preview .dz-error-mark, .dropzone-previews .dz-preview .dz-error-mark {
+    background-position: -268px -123px
+}
+
+.dropzone .dz-preview .dz-success-mark, .dropzone-previews .dz-preview .dz-success-mark {
+    background-position: -268px -163px
+}
+
+.dropzone .dz-preview .dz-progress .dz-upload, .dropzone-previews .dz-preview .dz-progress .dz-upload {
+    -webkit-animation: loading .4s linear infinite;
+    -moz-animation: loading .4s linear infinite;
+    -o-animation: loading .4s linear infinite;
+    -ms-animation: loading .4s linear infinite;
+    animation: loading .4s linear infinite;
+    -webkit-transition: width .3s ease-in-out;
+    -moz-transition: width .3s ease-in-out;
+    -o-transition: width .3s ease-in-out;
+    -ms-transition: width .3s ease-in-out;
+    transition: width .3s ease-in-out;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-repeat: repeat-x;
+    background-position: 0 -400px
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 1.51), (min-device-pixel-ratio: 1.5), (min-resolution: 138dpi), (min-resolution: 1.5dppx) {
+    .dropzone .dz-preview .dz-progress .dz-upload, .dropzone-previews .dz-preview .dz-progress .dz-upload {
+        -webkit-background-size: 428px 406px;
+        -moz-background-size: 428px 406px;
+        background-size: 428px 406px
+    }
+}
+
+.dropzone .dz-preview.dz-success .dz-progress, .dropzone-previews .dz-preview.dz-success .dz-progress {
+    display: block;
+    opacity: 0;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity .4s ease-in-out;
+    -moz-transition: opacity .4s ease-in-out;
+    -o-transition: opacity .4s ease-in-out;
+    -ms-transition: opacity .4s ease-in-out;
+    transition: opacity .4s ease-in-out
+}
+
+.dropzone .dz-preview .dz-error-message, .dropzone-previews .dz-preview .dz-error-message {
+    display: block;
+    opacity: 0;
+    -ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    -ms-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out
+}
+
+.dropzone .dz-preview:hover.dz-error .dz-error-message, .dropzone-previews .dz-preview:hover.dz-error .dz-error-message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none
+}
+
+.dropzone a.dz-remove, .dropzone-previews a.dz-remove {
+    background-image: -webkit-linear-gradient(top, #fafafa, #eee);
+    background-image: -moz-linear-gradient(top, #fafafa, #eee);
+    background-image: -o-linear-gradient(top, #fafafa, #eee);
+    background-image: -ms-linear-gradient(top, #fafafa, #eee);
+    background-image: linear-gradient(to bottom, #fafafa, #eee);
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #eee;
+    text-decoration: none;
+    display: block;
+    padding: 4px 5px;
+    text-align: center;
+    color: #aaa;
+    margin-top: 26px
+}
+
+.dropzone a.dz-remove:hover, .dropzone-previews a.dz-remove:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+@-moz-keyframes loading {
+    from {
+        background-position: 0 -400px
+    }
+    to {
+        background-position: -7px -400px
+    }
+}
+
+@-webkit-keyframes loading {
+    from {
+        background-position: 0 -400px
+    }
+    to {
+        background-position: -7px -400px
+    }
+}
+
+@-o-keyframes loading {
+    from {
+        background-position: 0 -400px
+    }
+    to {
+        background-position: -7px -400px
+    }
+}
+
+@keyframes loading {
+    from {
+        background-position: 0 -400px
+    }
+    to {
+        background-position: -7px -400px
+    }
+}
+
+/** Customized */
+
+.dropzone {
+    -moz-transition: .3s;
+    -webkit-transition: .3s;
+    transition: .3s;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: transparent;
+    border: 2px dashed rgba(0, 0, 0, 0.1);
+    min-height: 180px;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.dropzone:hover {
+    border: 2px dashed rgba(0, 0, 0, 0.15)
+}
+
+.dropzone input[type="file"] {
+    display: none
+}
+
+.dropzone a.dz-remove {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #85c99d;
+    color: #fff;
+    background-image: none;
+    border: none;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 3px 4px;
+}
+
+.dropzone a.dz-remove:hover {
+    cursor: pointer;
+}
+
+.dropzone .dz-default.dz-message {
+    display: table
+}
+
+.dropzone .dz-default.dz-message span {
+    color: #ec008c;
+    font-weight: 700;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center
+}
+
+.dropzone .dz-preview {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    background-color: #f4f4f2;
+    margin: 10px
+}
+
+.dropzone .dz-preview .dz-details img {
+    -moz-transition: .3s;
+    -webkit-transition: .3s;
+    transition: .3s
+}
+
+.dropzone .dz-preview .dz-details .dz-size {
+    font-size: 12px
+}
+
+.dropzone .dz-preview .dz-error-mark, .dropzone .dz-preview .dz-success-mark {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-shadow: none;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'fontawesome';
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    line-height: 1;
+    text-transform: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    height: 22px;
+    width: 22px;
+    font-size: 13px;
+    line-height: 23px
+}
+
+.dropzone .dz-preview .dz-success-mark:after {
+    color: green;
+    content: "\f00c"
+}
+
+.dropzone .dz-preview .dz-error-mark:after {
+    color: #ec008c;
+    content: "\f00d"
+}
+
+.dropzone.profile-picture {
+    padding: 0
+}
+
+.dropzone.profile-picture>img {
+    position: relative;
+    z-index: -2
+}
+
+.dropzone.profile-picture .dz-default.dz-message {
+    background-color: rgba(255, 255, 255, 0.9);
+    bottom: 0;
+    height: auto;
+    margin: 0;
+    left: inherit;
+    top: inherit;
+    padding: 10px 0;
+    width: 100%
+}
+
+.dropzone.profile-picture .dz-default.dz-message span {
+    color: #474747;
+    font-size: 12px
+}
+
+.dropzone.profile-picture.dz-started>img {
+    display: none
+}
+
+.dropzone.profile-picture .dz-image-preview {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100%
+}
+
+.dropzone.profile-picture .dz-image-preview .dz-details {
+    padding: 0
+}
+
+.expandable-content {
+    -moz-transition: .4s;
+    -webkit-transition: .4s;
+    transition: .4s
+}
+
+.dropzone .dz-preview .dz-error-message, .dropzone-previews .dz-preview .dz-error-message {
+    display: none;
+    position: absolute;
+    top: 25px;
+    left: -12px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 10px;
+    color: #FFF;
+    min-width: 140px;
+    max-width: 500px;
+    z-index: 0
+}

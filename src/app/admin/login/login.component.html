@@ -21,6 +21,7 @@
       <img [src]="user.photoURL" class="img-thumbnail" style="height: 150px; width: 150px">
       <p>UID: {{user.uid}}</p>
       <p *ngIf="user.favoriteColor">Favorite Color: {{user?.favoriteColor}}</p>
+      <a (click)="signOut()">Sign Out</a>
     </div>
   </div>
 </ng-template>

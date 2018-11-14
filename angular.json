@@ -23,9 +23,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
+              "src/assets/css/base.css",
+              "src/assets/css/skins/square/grey.css",
+              "src/assets/css/admin.css",
+              "src/assets/css/dropzone.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-2.2.4.min.js",
+              "src/assets/js/common_scripts_min.js",
+              "src/assets/js/functions.js",
+              "src/assets/assets/validate.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,9 +82,19 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
+              "src/assets/css/base.css",
+              "src/assets/css/skins/square/grey.css",
+              "src/assets/css/admin.css",
+              "src/assets/css/dropzone.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/jquery-2.2.4.min.js",
+              "src/assets/js/common_scripts_min.js",
+              "src/assets/js/functions.js",
+              "src/assets/assets/validate.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

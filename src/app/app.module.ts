@@ -15,11 +15,14 @@ import { CustomerModule } from './customer/customer.module';
 import { AppRoutingModule } from './/app-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     AdminModule,
@@ -31,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFireStorageModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

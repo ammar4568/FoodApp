@@ -1,0 +1,240 @@
+<app-cart-header></app-cart-header>
+
+<!-- Content ================================================== -->
+<div class="container margin_60_35">
+    <div class="row">
+        <div class="col-md-3">
+
+            <div class="box_style_2 hidden-xs info">
+                <h4 class="nomargin_top">Delivery On time <i class="fa fa-clock-o pull-right"></i></h4>
+                <p>
+                    Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex,
+                    tollit debitis
+                    conclusionemque te eos.
+                </p>
+                <hr>
+                <h4>Secure payment <i class="fa fa-credit-card pull-right"></i></h4>
+                <p>
+                    Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex,
+                    tollit debitis
+                    conclusionemque te eos.
+                </p>
+            </div><!-- End box_style_1 -->
+
+            <div class="box_style_2 hidden-xs" id="help">
+                <i class="fa fa-question-circle-o"></i>
+                <h4>Need <span>Help?</span></h4>
+                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
+                <small>Monday to Friday 9.00am - 7.30pm</small>
+            </div>
+
+        </div><!-- End col-md-3 -->
+
+        <div class="col-md-6">
+            <div class="box_style_2" id="order_process">
+                <h2 class="inner">Your order details</h2>
+                <!-- <p>{{contactForm.status}}</p> -->
+                <!-- <p>{{formErrors | json}}</p> -->
+                <form novalidate (ngSubmit)="submitContact()" [formGroup]="contactForm">
+                    <div class="form-group">
+                        <label>First name</label>
+                        <input style="margin-bottom: 10px" type="text" [ngClass]="{'error': formErrors.firstName}"
+                            formControlName="firstName" class="form-control" id="firstname_order"
+                            name="firstname_order" placeholder="First name" required>
+                        <div *ngIf="formErrors.firstName" class="alert alert-danger">
+                            <strong>{{formErrors.firstName}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Last name</label>
+                        <input style="margin-bottom: 10px" type="text" [ngClass]="{'error': formErrors.lastName}"
+                            formControlName="lastName" class="form-control" id="lastname_order"
+                            name="lastname_order" placeholder="Last name" required>
+                        <div *ngIf="formErrors.lastName" class="alert alert-danger">
+                            <strong>{{formErrors.lastName}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Telephone/mobile</label>
+                        <input style="margin-bottom: 10px" type="text" [ngClass]="{'error': formErrors.mobile}"
+                            formControlName="mobile" id="tel_order" name="tel_order" class="form-control"
+                            placeholder="Telephone/mobile" pattern="[0-9]*" required>
+                        <div *ngIf="formErrors.mobile" class="alert alert-danger">
+                            <strong>{{formErrors.mobile}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input style="margin-bottom: 10px" type="email" [ngClass]="{'error': formErrors.email}"
+                            formControlName="email" id="email_booking_2" name="email_order"
+                            class="form-control" placeholder="Your email" email required>
+                        <div *ngIf="formErrors.email" class="alert alert-danger">
+                            <strong>{{formErrors.email}}</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Your full address</label>
+                        <input style="margin-bottom: 10px" type="text" [ngClass]="{'error': formErrors.address}"
+                            formControlName="address" id="address_order" name="address_order"
+                            class="form-control" placeholder=" Your full address" required>
+                        <div *ngIf="formErrors.address" class="alert alert-danger">
+                            <strong>{{formErrors.address}}</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input style="margin-bottom: 10px" type="text" [ngClass]="{'error': formErrors.city}"
+                                    formControlName="city" id="city_order" name="city_order"
+                                    class="form-control" placeholder="Your city" required>
+                            </div>
+                            <div *ngIf="formErrors.city" class="alert alert-danger">
+                                <strong>{{formErrors.city}}</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Postal code</label>
+                                <input style="margin-bottom: 10px" type="text" [ngClass]="{'error': formErrors.postalCode}"
+                                    formControlName="postalCode" id="pcode_oder" name="pcode_oder"
+                                    class="form-control" placeholder=" Your postal code"
+                                    required>
+                                <div *ngIf="formErrors.postalCode" class="alert alert-danger">
+                                    <strong>{{formErrors.postalCode}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Delivery Day</label>
+                                <select style="margin-bottom: 10px" class="form-control"
+                                    [ngClass]="{'error': formErrors.deliveryDay}"
+                                    formControlName="deliveryDay" name="delivery_schedule_day"
+                                    id="delivery_schedule_day" required>
+                                    <option value="" selected>Select day</option>
+                                    <option value="Today">Today</option>
+                                    <option value="Tomorrow">Tomorrow</option>
+                                </select>
+                                <div *ngIf="formErrors.deliveryDay" class="alert alert-danger">
+                                    <strong>{{formErrors.deliveryDay}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Delivery time</label>
+                                <select style="margin-bottom: 10px" class="form-control"
+                                    [ngClass]="{'error': formErrors.deliveryTime}"
+                                    formControlName="deliveryTime" name="delivery_schedule_time"
+                                    id="delivery_schedule_time" required>
+                                    <option value="" selected>Select time</option>
+                                    <option value="11.30am">11.30am</option>
+                                    <option value="11.45am">11.45am</option>
+                                    <option value="12.15am">12.15am</option>
+                                    <option value="12.30am">12.30am</option>
+                                    <option value="12.45am">12.45am</option>
+                                    <option value="01.00pm">01.00pm</option>
+                                    <option value="01.15pm">01.15pm</option>
+                                    <option value="01.30pm">01.30pm</option>
+                                    <option value="01.45pm">01.45pm</option>
+                                    <option value="02.00pm">02.00pm</option>
+                                    <option value="07.00pm">07.00pm</option>
+                                    <option value="07.15pm">07.15pm</option>
+                                    <option value="07.30pm">07.30pm</option>
+                                    <option value="07.45pm">07.45pm</option>
+                                    <option value="08.00pm">08.00pm</option>
+                                    <option value="08.15pm">08.15pm</option>
+                                    <option value="08.30pm">08.30pm</option>
+                                    <option value="08.45pm">08.45pm</option>
+                                </select>
+                                <div *ngIf="formErrors.deliveryTime" class="alert alert-danger">
+                                    <strong>{{formErrors.deliveryTime}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <label>Notes for the restaurant</label>
+                            <textarea class="form-control" formControlName="notes" style="height:150px"
+                                placeholder="Ex. Allergies, cash change..." name="notes" id="notes"></textarea>
+
+                        </div>
+                    </div>
+                </form>
+            </div><!-- End box_style_1 -->
+        </div><!-- End col-md-6 -->
+
+        <div class="col-md-3" id="sidebar">
+            <div class="theiaStickySidebar">
+                <div id="cart_box">
+                    <h3>Your order <i class="fa fa-cart-plus pull-right" style="font-size: 1.1em;"></i></h3>
+                    <table class="table table_summary">
+                        <thead>
+                            <tr>
+                                <th>Quantity</th>
+                                <th>Item</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="recipeList">
+                            <tr *ngFor="let item of recipeList" style="font-size: 1.15em">
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.name}}</td>
+                                <td>
+                                    <strong class="pull-right text-danger">
+                                        <a (click)="removeItem(item)"><i class="icon-trash text-danger"></i></a>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="row" id="options_2">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                            <label><input type="radio" value="publish" checked (click)="onRadioSwith($event)"
+                                    name="privacy" class="icheck">Publish</label>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                            <label><input type="radio" value="private" name="privacy" (click)="onRadioSwith($event)"
+                                    class="icheck">Private</label>
+                        </div>
+                    </div><!-- Edn options 2 -->
+                    <!-- <hr>
+                    <table class="table table_summary">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Subtotal <span class="pull-right">$56</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Delivery fee <span class="pull-right">$10</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="total">
+                                    TOTAL <span class="pull-right">$66</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <hr>
+                    <a class="btn_full" (click)="submitContact()">Confirm</a>
+                    <!-- <a class="btn_full_outline" navigate()><i class="icon-right"></i>
+                        Add other items</a> -->
+                </div><!-- End cart_box -->
+            </div><!-- End theiaStickySidebar -->
+        </div><!-- End col-md-3 -->
+
+    </div><!-- End row -->
+</div><!-- End container -->
+<!-- End Content =============================================== -->
+<app-footer></app-footer>

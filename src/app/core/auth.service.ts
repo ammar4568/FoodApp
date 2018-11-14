@@ -37,7 +37,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential: any) => {
         const token = credential.credential.idToken;
-        localStorage.setItem('currentUser', JSON.stringify({ token: token }));
+        localStorage.setItem('currentUserToken', JSON.stringify({ token: token }));
         this.updateUserData(credential.user);
       });
   }
@@ -50,8 +50,8 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      isAdmin: false
     };
+    localStorage.setItem('currentUser', JSON.stringify(data));
     userRef.set(data);
   }
 
