@@ -18,7 +18,7 @@ export class OrderConfirmedComponent implements OnInit {
     this.orderService.currentOrderContact.subscribe(contactinfo => this.contactInfo = contactinfo);
     this.orderService.currentOrderList.subscribe(list => this.recipeList = list);
     if (this.recipeList === '') {
-      // this.router.navigate(['order']);
+      this.router.navigate(['order']);
     }
   }
 

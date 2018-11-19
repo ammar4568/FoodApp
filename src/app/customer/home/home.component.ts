@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,13 @@ export class HomeComponent implements OnInit {
 
   loadSpinner = true;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
+  }
+
+  viewAllRecipes() {
+    this.router.navigate(['order'], { queryParams: { display: 'recipes' } });
   }
 
 }

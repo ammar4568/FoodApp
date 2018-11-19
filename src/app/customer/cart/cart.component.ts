@@ -20,6 +20,7 @@ export class CartComponent implements OnInit {
   privacy = 'publish';
 
   formErrors = {
+    'barName': '',
     'firstName': '',
     'lastName': '',
     'mobile': '',
@@ -32,6 +33,9 @@ export class CartComponent implements OnInit {
   };
 
   validationMessages = {
+    'barName': {
+      'required': 'Bar Name is required'
+    },
     'firstName': {
       'required': 'First Name is required',
       'minlength': 'First Name must be at least 2 characters long'
@@ -73,6 +77,7 @@ export class CartComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     this.contactForm = this.fb.group({
+      barName: ['', [Validators.required]],
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       mobile: ['', [Validators.required]],

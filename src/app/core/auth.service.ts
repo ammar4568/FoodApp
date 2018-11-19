@@ -50,6 +50,7 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
+      isAdmin: false
     };
     localStorage.setItem('currentUser', JSON.stringify(data));
     userRef.set(data);

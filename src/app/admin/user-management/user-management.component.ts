@@ -14,7 +14,6 @@ export class UserManagementComponent implements OnInit {
   constructor(private userService: UserService) {
     this.customers = true;
     this.users = this.userService.getCustomers();
-
   }
 
   ngOnInit() {

@@ -35,14 +35,8 @@ export class IngredientService {
     return this.afs.collection('ingredients', ref => ref.where('name', '==', name)).snapshotChanges();
   }
 
-  async editIngredient(id, values) {
-    this.afs.doc(`ingredients/${id}`)
-      .update(values).then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        return err;
-      });
+  editIngredient(id, values) {
+    return this.afs.doc(`ingredients/${id}`).update(values);
   }
 
   async deleteIngredient(id) {

@@ -25,7 +25,7 @@ export class UserService {
     if (isAdmin) {
       this.x = this.getUser(user).subscribe(item => {
         item.map(i => {
-          console.log(i.payload.doc.data(), 'IsAdmin');
+          // console.log(i.payload.doc.data(), 'IsAdmin');
           const id = i.payload.doc.id;
           user.isAdmin = true;
           this.afs.doc(`users/${id}`).set(user);
@@ -35,7 +35,7 @@ export class UserService {
     } else {
       this.x = this.getUser(user).subscribe(item => {
         item.map(i => {
-          console.log(i.payload.doc.data(), 'NotIsAdmin');
+          // console.log(i.payload.doc.data(), 'NotIsAdmin');
           const id = i.payload.doc.id;
           user.isAdmin = false;
           this.afs.doc(`users/${id}`).set(user);

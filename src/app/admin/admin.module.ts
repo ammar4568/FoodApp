@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { OrderManagementComponent } from './order-management/order-management.component';
+import { RecipeManagementComponent } from './recipe-management/recipe-management.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { OrderManagementComponent } from './order-management/order-management.co
     UserManagementComponent,
     HeaderComponent,
     FooterComponent,
-    OrderManagementComponent],
+    OrderManagementComponent,
+    RecipeManagementComponent],
   exports: [LoginComponent]
 })
 export class AdminModule { }

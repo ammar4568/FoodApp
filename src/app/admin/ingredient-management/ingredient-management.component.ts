@@ -6,6 +6,9 @@ import { CategoryService } from '../category.service';
 import { Category } from '../../models/category';
 import { Ingredient } from '../../models/ingredient';
 
+declare var $: any;
+
+
 @Component({
   selector: 'app-ingredient-management',
   templateUrl: './ingredient-management.component.html',
@@ -64,27 +67,29 @@ export class IngredientManagementComponent implements OnInit {
     } else {
       this.loadingIngredient = true;
       // TODO: For testing remove afterwards
-      this.ingredientForm = this.fb.group({
-        name: 'Test',
-        servingSize: 10,
-        portionSize: 1,
-        portionFlag: '',
-        calories: 100,
-        carbCalorie: 30,
-        fatCalorie: 50,
-        proteinCalorie: 20,
-        rda: '',
-        bitternessFlat: '',
-        category: 'Test Category'
-      });
+      // this.ingredientForm = this.fb.group({
+      //   name: 'Test',
+      //   servingSize: 10,
+      //   portionSize: 1,
+      //   portionFlag: '',
+      //   calories: 100,
+      //   carbCalorie: 30,
+      //   fatCalorie: 50,
+      //   proteinCalorie: 20,
+      //   rda: '',
+      //   bitternessFlat: '',
+      //   category: 'Test Category'
+      // });
       this.ingredientService.addIngredient(this.ingredientForm.value)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           this.loadingIngredient = false;
+          $('#ingredientModal').modal('hide');
         })
         .catch((err) => {
           console.log(err);
           this.loadingIngredient = false;
+          $('#ingredientModal').modal('hide');
         });
     }
   }
@@ -94,11 +99,13 @@ export class IngredientManagementComponent implements OnInit {
     this.categoryService.addCategory(this.categoryForm.value)
       .then((response) => {
         this.loadingCategory = false;
-        console.log(response);
+        $('#categoryModal').modal('hide');
+        // console.log(response);
       })
       .catch((err) => {
-        console.log(err);
         this.loadingCategory = false;
+        $('#categoryModal').modal('hide');
+        // console.log(err);
       });
   }
 
@@ -140,16 +147,18 @@ export class IngredientManagementComponent implements OnInit {
 
   updateIngredient() {
     this.ingredientService.getIngredient(this.ingredientToEdit).subscribe(item => {
+      // console.log(item);
       item.map(i => {
         const id = i.payload.doc.id;
-
-        console.log(this.ingredientService.editIngredient(id, this.ingredientForm.value));
-        /* .then((res) => {
-          return res;
-        })
-        .catch((err) => {
-          return err;
-        }); */
+        this.ingredientService.editIngredient(id, this.ingredientForm.value)
+          .then((res) => {
+            // console.log(res + ' then');
+            $('#ingredientModal').modal('hide');
+          })
+          .catch((err) => {
+            // console.log(err + ' catch');
+            $('#ingredientModal').modal('hide');
+          });
       });
     });
   }

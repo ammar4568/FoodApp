@@ -5,7 +5,8 @@
         <h3 class="panel-title">Ingredient Management</h3>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-success" data-toggle="modal" data-target="#ingredientModal" (click)="add()">
+        <button class="btn btn-success" data-toggle="modal" data-target="#ingredientModal"
+          (click)="add()">
           Add New Ingredient
         </button>
       </div>
@@ -61,7 +62,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="ingredientModal">
         <form (ngSubmit)="addIngredient()" [formGroup]="ingredientForm" style="margin: 30px 30px;">
           <div class="form-group">
             <label for="inputIngredientCategory">Select Category</label>
@@ -110,14 +111,15 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="inputProteinCalories">Protein Calories</label>
-                <input type="number" class="form-control" id="inputProteinCalories" placeholder="Protein Calories"
-                  formControlName="proteinCalorie">
+                <input type="number" class="form-control" id="inputProteinCalories"
+                  placeholder="Protein Calories" formControlName="proteinCalorie">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="inputCalories">Calories</label>
-                <input type="number" class="form-control" id="inputCalories" placeholder="Calories" formControlName="calories">
+                <input type="number" class="form-control" id="inputCalories" placeholder="Calories"
+                  formControlName="calories">
               </div>
             </div>
           </div>
@@ -137,7 +139,8 @@
 
 
 <!-- Category Modal -->
-<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -150,7 +153,8 @@
         <form (ngSubmit)="addCategory()" [formGroup]="categoryForm" style=" margin: 30px 30px;">
           <div class="form-group">
             <label for="inputCategory">Category</label>
-            <input type="text" class="form-control" id="inputCategory" placeholder="Category" formControlName="name">
+            <input type="text" class="form-control" id="inputCategory" placeholder="Category"
+              formControlName="name">
           </div>
 
           <div class="form-group">
@@ -170,7 +174,8 @@
 <!-- Category Modal Finish -->
 
 <!-- Delete Model -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,19 @@ export class RecipeService {
 
   getRecipe(id) {
     return this.afs.doc(`recipe/${id}`).valueChanges();
+  }
+
+  getRecipes() {
+    return this.afs.collection('recipe').valueChanges();
+  }
+
+  getRecipesDoc() {
+    return this.afs.collection('recipe').snapshotChanges().pipe(
+      map(x => x.map(a => {
+        const data = a.payload.doc.data();
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 }

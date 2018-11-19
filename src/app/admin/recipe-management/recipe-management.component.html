@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recipe Management</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table" *ngFor="let recipe of recipes">
+      <thead>
+        <tr>
+          <th>Calories</th>
+          <th>Carb Calorie</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of getRecipe(recipe)">
+          <td> {{item.calories}} </td>
+          <td> {{item.carbCalorie}} </td>
+          <td> {{item.category}} </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 
+    <div>
+      <ul>
+        <li *ngFor="let recipe of recipes">
+           <p>{{recipe | json}}</p> 
+     <p>{{getRecipe(recipe) | json}}</p> 
+    <ul *ngFor="let item of getRecipe(recipe)">
+      <li>{{item.calories}}</li>
+      <li>{{item.carbCalorie}}</li>
+      <li>{{item.category}}</li>
+    </ul>
+    </li>
+    </ul>
+  </div> -->
+  </div>
+</div>

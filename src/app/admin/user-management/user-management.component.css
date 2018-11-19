@@ -40,14 +40,14 @@
 }
 
 .onoffswitch-inner:before {
-    content: "Staff";
+    content: "Customer";
     padding-left: 10px;
     background-color: #34A7C1;
     color: #FFFFFF;
 }
 
 .onoffswitch-inner:after {
-    content: "Customer";
+    content: "Staff";
     padding-right: 10px;
     background-color: #EEEEEE;
     color: #999999;

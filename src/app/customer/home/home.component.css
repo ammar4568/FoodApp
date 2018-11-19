@@ -2,3 +2,12 @@
     color: #FFCC00;
     font-size: 1.12em;
 }
+
+.icon {
+    font-size: 1.1em;
+    color: #66CC33;
+}
+
+.strip_list {
+    cursor: pointer;
+}
