@@ -11,7 +11,8 @@ export const environment = {
     projectId: 'foodapp-27c35',
     storageBucket: 'foodapp-27c35.appspot.com',
     messagingSenderId: '439207162221'
-  }
+  },
+  stripeKey: 'pk_test_vXAWdJvKCqroSfeXXol2afN7'
 };
 
 /*

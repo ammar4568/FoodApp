@@ -41,11 +41,11 @@ export class IngredientManagementComponent implements OnInit {
       portionSize: '',
       portionFlag: '',
       calories: '',
+      rda: '',
       carbCalorie: '',
       fatCalorie: '',
       proteinCalorie: '',
-      rda: '',
-      bitternessFlat: '',
+      bitternessFlag: '',
       category: ''
     });
 
@@ -77,7 +77,7 @@ export class IngredientManagementComponent implements OnInit {
       //   fatCalorie: 50,
       //   proteinCalorie: 20,
       //   rda: '',
-      //   bitternessFlat: '',
+      //   bitternessFlag: '',
       //   category: 'Test Category'
       // });
       this.ingredientService.addIngredient(this.ingredientForm.value)
@@ -87,7 +87,7 @@ export class IngredientManagementComponent implements OnInit {
           $('#ingredientModal').modal('hide');
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           this.loadingIngredient = false;
           $('#ingredientModal').modal('hide');
         });
@@ -175,7 +175,7 @@ export class IngredientManagementComponent implements OnInit {
       fatCalorie: '',
       proteinCalorie: '',
       rda: '',
-      bitternessFlat: '',
+      bitternessFlag: '',
       category: ''
     });
     this.edit = false;
@@ -189,7 +189,9 @@ export class IngredientManagementComponent implements OnInit {
     this.ingredientService.getIngredient(this.ingredientToDelete).subscribe(item => {
       item.map(i => {
         const id = i.payload.doc.id;
-        console.log(this.ingredientService.deleteIngredient(id));
+        this.ingredientService.deleteIngredient(id);
+        // console.log(this.ingredientService.deleteIngredient(id));
+        $('#deleteModal').modal('hide');
       });
     });
   }

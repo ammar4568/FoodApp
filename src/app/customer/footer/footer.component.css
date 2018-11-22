@@ -1,0 +1,13 @@
+.card-img {
+    margin-left: 70px;
+}
+
+@media only screen and (min-width: 768px) {
+    .card-img {
+        margin-left: 175px;
+    }
+    .list-items {
+        display: inline;
+        cursor: pointer;
+    }
+}

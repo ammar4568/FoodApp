@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,13 @@ import { AuthService } from 'src/app/core/auth.service';
 export class HeaderComponent implements OnInit {
   user;
 
-  constructor(public auth: AuthService) {
+  constructor(public auth: AuthService, private router: Router) {
     auth.user.subscribe(user => {
       this.user = user;
+      // console.log(this.user.isAdmin);
+      if (!this.user.isAdmin) {
+        this.router.navigate(['']);
+      }
     });
   }
 
@@ -20,6 +25,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.auth.signOut();
+    this.router.navigate(['admin/login']);
+  }
+
+  navigate(link) {
+    this.router.navigate([`${link}`]);
   }
 
 }

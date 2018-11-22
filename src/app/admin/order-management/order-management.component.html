@@ -3,10 +3,6 @@
     <h3 class="panel-title">Order Management</h3>
   </div>
   <div class="panel-body">
-    <!-- <div *ngFor="let order of orderList | async">
-      {{order | json}} 
-      {{order.firstName}}
-    </div> -->
     <table class="table">
       <thead>
         <tr>
@@ -15,7 +11,9 @@
           <th>Mobile No</th>
           <th>Delivery Time</th>
           <th>Delivery Day</th>
+          <th>Info</th>
           <th>View Order</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +23,16 @@
           <td> {{order.mobile}} </td>
           <td> {{order.deliveryTime}} </td>
           <td> {{order.deliveryDay}} </td>
-          <td> <button type="button" class="btn btn-info" (click)="getRecipe(order.id)"
+          <td>
+            <button type="button" class="btn btn-dark" (click)="setCurrentOrder(order)"
+              data-toggle="modal" data-target="#infoModal"><i class="fa fa-info"></i></button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="getRecipe(order.id)"
               data-toggle="modal" data-target="#myModal">View</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-success" (click)="dispatchOrder(order)">Dispatch</button>
           </td>
         </tr>
       </tbody>
@@ -60,6 +66,45 @@
               <td>{{recipe.name}} </td>
               <td>{{recipe.quantity}}</td>
               <td>{{recipe.category}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="infoModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Order Information</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody *ngIf="currentOrder">
+            <tr>
+              <th>Bar Name</th>
+              <td>{{currentOrder.barName}}</td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>{{currentOrder.city}}</td>
+            </tr>
+            <tr>
+              <th>Postal Code </th>
+              <td>{{currentOrder.postalCode}}</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>{{currentOrder.address}}</td>
             </tr>
           </tbody>
         </table>

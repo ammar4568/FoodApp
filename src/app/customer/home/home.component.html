@@ -1,6 +1,31 @@
-<app-header></app-header>
+<app-header (queryEmitter)="search($event)"></app-header>
 <!-- Content ================================================== -->
 <div class="container margin_60">
+
+  <div *ngIf="searchItems" class="row">
+    <div class="col-md-6" *ngFor="let item of searchItems">
+      <a class="strip_list" (click)="getRecipe(item.id)" data-toggle="modal" data-target="#myModal">
+        <div class="ribbon_1">Popular</div>
+        <div class="desc" style="padding-left: 50px !important;">
+          <!-- <div class="thumb_strip">
+              <img src="../../../assets/img/thumb_restaurant.jpg" alt="">
+            </div> -->
+          <div class="rating">
+            <i class="fa fa-star star"></i><i class="fa fa-star star"></i><i class="fa fa-star star"></i>
+            <i class="fa fa-star star"></i><i class="fa fa-star star"></i>
+          </div>
+          <h3>{{item.barName}}</h3>
+          <div class="type">
+            {{item.firstName}} {{item.lastName}}
+          </div>
+          <ul>
+            <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
+            <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
+          </ul>
+        </div>
+      </a>
+    </div>
+  </div>
 
   <div class="main_title">
     <h2 class="nomargin_top" style="padding-top:0">How it works</h2>
@@ -57,6 +82,34 @@
       <h2 class="nomargin_top">Choose from Most Popular</h2>
     </div>
 
+
+    <div class="row">
+      <div *ngFor="let order of orderList | async; let idx = index" class="col-md-6">
+        <a *ngIf="idx < 6" class="strip_list" (click)="getRecipe(order.id)" data-toggle="modal"
+          data-target="#myModal">
+          <div class="ribbon_1">Popular</div>
+          <div class="desc" style="padding-left: 50px !important;">
+            <!-- <div class="thumb_strip">
+              <img src="../../../assets/img/thumb_restaurant.jpg" alt="">
+            </div> -->
+            <div class="rating">
+              <i class="fa fa-star star"></i><i class="fa fa-star star"></i><i class="fa fa-star star"></i>
+              <i class="fa fa-star star"></i><i class="fa fa-star star"></i>
+            </div>
+            <h3>{{order.barName}}</h3>
+            <div class="type">
+              {{order.firstName}} {{order.lastName}}
+            </div>
+            <ul>
+              <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
+              <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
+            </ul>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 
     <div class="row">
       <div class="col-md-6">
         <a class="strip_list">
@@ -77,8 +130,9 @@
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
             </ul>
-          </div><!-- End desc-->
-        </a><!-- End strip_list-->
+          </div>
+        </a>
+
         <a class="strip_list">
           <div class="ribbon_1">Popular</div>
           <div class="desc">
@@ -97,8 +151,9 @@
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
             </ul>
-          </div><!-- End desc-->
-        </a><!-- End strip_list-->
+          </div>
+        </a>
+
         <a class="strip_list">
           <div class="ribbon_1">Popular</div>
           <div class="desc">
@@ -117,9 +172,9 @@
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
             </ul>
-          </div><!-- End desc-->
-        </a><!-- End strip_list-->
-      </div><!-- End col-md-6-->
+          </div>
+        </a>
+      </div>
       <div class="col-md-6">
         <a class="strip_list">
           <div class="ribbon_1">Popular</div>
@@ -139,8 +194,8 @@
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
             </ul>
-          </div><!-- End desc-->
-        </a><!-- End strip_list-->
+          </div>
+        </a>
         <a class="strip_list">
           <div class="ribbon_1">Popular</div>
           <div class="desc">
@@ -159,8 +214,8 @@
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
             </ul>
-          </div><!-- End desc-->
-        </a><!-- End strip_list-->
+          </div>
+        </a>
         <a class="strip_list">
           <div class="ribbon_1">Popular</div>
           <div class="desc">
@@ -179,10 +234,10 @@
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
             </ul>
-          </div><!-- End desc-->
-        </a><!-- End strip_list-->
+          </div>
+        </a>
       </div>
-    </div><!-- End row -->
+    </div> -->
 
   </div><!-- End container -->
 </div><!-- End white_bg -->
@@ -240,3 +295,67 @@
   <!--End row -->
 </div><!-- End container -->
 <app-footer></app-footer>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Recipe List</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Categories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let recipe of recipeList">
+              <td>{{recipe.name}} </td>
+              <td>{{recipe.quantity}}</td>
+              <td>{{recipe.category}}</td>
+              <td class="options">
+                <div class="dropdown dropdown-options">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                    <i class="icon-info-circled text-primary" style="font-size: 1.35em;"></i></a>
+                  <div class="dropdown-menu">
+                    <h5>Info</h5>
+                    <label>
+                      Calories <span>{{recipe.calories}}</span>
+                    </label>
+                    <label>
+                      Carb Calorie <span>{{recipe.carbCalorie}}</span>
+                    </label>
+                    <label>
+                      Fat Calorie <span>{{recipe.fatCalorie}}</span>
+                    </label>
+                    <label>
+                      Protein Calorie <span>{{recipe.proteinCalorie}}</span>
+                    </label>
+                    <label class="top-border">
+                      RDA <span>{{recipe.rda}}%</span>
+                    </label>
+                    <label>
+                      Portion Size <span>{{recipe.portionSize}}</span>
+                    </label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-primary" style="text-align: center; background: #DF4F67;"
+          data-dismiss="modal" (click)="placeOrder()">Order</button>
+      </div>
+    </div>
+
+  </div>
+</div>

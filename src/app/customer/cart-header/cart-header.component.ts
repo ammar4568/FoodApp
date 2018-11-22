@@ -8,15 +8,30 @@ import { AuthService } from 'src/app/core/auth.service';
   styleUrls: ['./cart-header.component.css']
 })
 export class CartHeaderComponent implements OnInit {
+  user;
 
   constructor(public router: Router,
-    public auth: AuthService) { }
+    public auth: AuthService) {
+    auth.user.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   ngOnInit() {
   }
 
   navigate(link) {
     this.router.navigate([`${link}`]);
+  }
+
+
+
+  logout() {
+    this.auth.signOut();
+  }
+
+  viewDashboard() {
+    this.router.navigate(['admin']);
   }
 }
 

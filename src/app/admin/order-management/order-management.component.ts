@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../customer/order.service';
 import { RecipeService } from '../../customer/recipe.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-management',
@@ -11,10 +12,11 @@ export class OrderManagementComponent implements OnInit {
 
   orderList;
   recipeList;
+  currentOrder;
 
   constructor(private orderService: OrderService,
     private recipeService: RecipeService) {
-    this.orderList = this.orderService.getOrders();
+    this.orderList = this.orderService.getUndispatchedOrders();
   }
 
   ngOnInit() {
@@ -23,6 +25,26 @@ export class OrderManagementComponent implements OnInit {
   getRecipe(id) {
     this.recipeService.getRecipe(id).subscribe((item) => {
       this.recipeList = Object.assign([], item);
+    });
+  }
+
+  setCurrentOrder(order) {
+    this.currentOrder = order;
+  }
+
+  dispatchOrder(order) {
+    order.status = 'dispatched';
+    this.orderService.getOrderId(order.id).subscribe(item => {
+      item.map(a => {
+        const id = a.payload.doc.id;
+        this.orderService.dispatchOrder(id, order)
+          .then(() => {
+            console.log('Dispatched');
+          })
+          .catch(() => {
+            console.log('Error');
+          });
+      });
     });
   }
 

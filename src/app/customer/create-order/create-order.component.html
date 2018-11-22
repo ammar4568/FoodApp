@@ -22,16 +22,8 @@
               {{order.barName}}</a>
           </li>
         </ul>
-      </div><!-- End box_style_1 -->
-
-      <!-- <div class="box_style_2 hidden-xs" id="help">
-        <i class="icon_lifesaver"></i>
-        <h4>Need <span>Help?</span></h4>
-        <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-        <small>Monday to Friday 9.00am - 7.30pm</small>
-      </div> -->
+      </div>
     </div>
-    <!-- End col-md-3 -->
 
     <div class="col-md-6">
       <div class="box_style_2" id="main_menu">
@@ -48,8 +40,11 @@
               <th>
                 Info
               </th>
-              <th>
+              <th *ngIf="type == 'cat'">
                 Add
+              </th>
+              <th *ngIf="type == 'bar'">
+                Quantity
               </th>
             </tr>
           </thead>
@@ -74,11 +69,17 @@
                     <label>
                       Protein Calorie <span>{{ingredient.proteinCalorie}}</span>
                     </label>
+                    <label class="top-border">
+                      RDA <span>{{ingredient.rda}}%</span>
+                    </label>
+                    <label>
+                      Portion Size <span>{{ingredient.portionSize}}</span>
+                    </label>
                   </div>
                 </div>
               </td>
               <td>
-                <input type="checkbox" (click)="addToList($event, ingredient)" aria-label="Checkbox for following text input"
+                <input type="checkbox" (click)="addToList($event, ingredient)" id="{{getId(ingredient.name)}}"
                   [checked]="check(ingredient)">
               </td>
             </tr>
@@ -104,13 +105,20 @@
                     <label>
                       Protein Calorie <span>{{recipe.proteinCalorie}}</span>
                     </label>
+                    <label class="top-border">
+                      RDA <span>{{recipe.rda}}%</span>
+                    </label>
+                    <label>
+                      Portion Size <span>{{recipe.portionSize}}</span>
+                    </label>
                   </div>
                 </div>
               </td>
-              <td>
-                <input type="checkbox" (click)="addToList($event, recipe)" aria-label="Checkbox for following text input"
+              <td>{{recipe.quantity}}</td>
+              <!-- <td>
+                <input type="checkbox" (click)="addToList($event, recipe)" id="{{getId(recipe.name)}}"
                   [checked]="check(recipe)">
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>
@@ -131,98 +139,39 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of ingredientOrderList" style="font-size: 1.15em">
-                <td class="col-md-6">
-                  <a (click)="changeQuantity(item, 'minus')">
+                <td class="col-md-6" style="padding: 2px;">
+                  <a *ngIf="type == 'cat'" (click)="changeQuantity(item, 'minus')">
                     <i class="icon-minus-circled text-primary"></i>
                   </a>
                   {{item.quantity}}x
-                  <a *ngIf="!item.plus" (click)="changeQuantity(item, 'plus')">
+                  <a *ngIf="type == 'cat' && !item.plus" (click)="changeQuantity(item, 'plus')">
                     <i class="icon-plus-circled text-primary"></i>
                   </a>
                 </td>
                 <td class="col-md-3">{{item.name}}</td>
-                <td class="col-md-1">
+                <td *ngIf="type == 'cat'" class="col-md-1">
                   <strong class="pull-right text-danger">
                     <a (click)="removeItem(item)"><i class="icon-trash text-danger"></i></a>
                   </strong>
                 </td>
               </tr>
-              <!-- <tr>
-                <td>
-    <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas
-                </td>
-                <td>
-                  <strong class="pull-right">$11</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-                </td>
-                <td>
-                  <strong class="pull-right">$14</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken
-                </td>
-                <td>
-                  <strong class="pull-right">$20</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-                </td>
-                <td>
-                  <strong class="pull-right">$9</strong>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-                </td>
-                <td>
-                  <strong class="pull-right">$12</strong>
-                </td>
-              </tr> -->
             </tbody>
           </table>
-          <!-- 
-          <hr>
-          <div class="row" id="options_2">
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-              <label><input type="radio" value="" checked name="option_2" class="icheck">Delivery</label>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-              <label><input type="radio" value="" name="option_2" class="icheck">Take Away</label>
-            </div>
-          </div> -->
-          <!-- Edn options 2 -->
-
-          <!-- <hr>
-          <table class="table table_summary">
+          <table class="table table_summary" *ngIf="ingredientOrderList.length">
+            <thead>
+              <tr>
+                <th>Bar</th>
+                <th>Bulk</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr>
-                <td>
-                  Subtotal <span class="pull-right">$56</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Delivery fee <span class="pull-right">$10</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="total">
-                  TOTAL <span class="pull-right">$66</span>
-                </td>
-              </tr>
+              <td class="col-md-6">{{barWeight | number: '.2'}}gm</td>
+              <td class="col-md-6">{{bulkWeight | number: '.2'}}gm</td>
             </tbody>
-          </table> -->
+            <!-- <p>Bar: {{barWeight | number: '.2'}}</p> -->
+            <!-- <p>Bulk: {{bulkWeight | number: '.2'}}</p> -->
+          </table>
           <hr>
-          <!-- <a class="btn_full" href="cart.html">Order now</a> -->
           <a class="btn_full" (click)="placeOrder()">Order now</a>
         </div><!-- End cart_box -->
       </div><!-- End theiaStickySidebar -->
@@ -232,5 +181,20 @@
 </div><!-- End container -->
 <!-- End Content =============================================== -->
 
+<div class="modal fade" id="loginModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  role="dialog" aria-labelledby="myLogin" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-popup">
+      <!-- <a style="cursor: pointer;" class="close-link"><i class="fa fa-times"></i></a> -->
+      <form action="#" class="popup-form" id="myLogin">
+        <div class="login_icon"><i class="fa fa-lock"></i></div>
+        <h3>Please Login To Continue</h3>
+        <button class="btn btn-danger" (click)="auth.googleLogin()">
+          <i class="fa fa-google"></i> Connect Google
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>

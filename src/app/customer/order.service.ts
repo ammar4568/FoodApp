@@ -22,6 +22,14 @@ export class OrderService {
     return this.afs.collection('orders').valueChanges();
   }
 
+  getUndispatchedOrders() {
+    return this.afs.collection('orders', ref => ref.where('status', '==', '')).valueChanges();
+  }
+
+  getDispatchedOrders() {
+    return this.afs.collection('orders', ref => ref.where('status', '==', 'dispatched')).valueChanges();
+  }
+
   addCustomerDetails(customerInfo) {
     return this.afs.collection('orders').add(customerInfo);
   }
@@ -32,5 +40,18 @@ export class OrderService {
 
   setOrderContact(contactInfo) {
     this.contactSource.next(contactInfo);
+  }
+
+  getOrdersWithQuery(query) {
+    return this.afs.collection('orders', ref => ref.where('barName', '==', query)).valueChanges();
+  }
+
+
+  getOrderId(orderId) {
+    return this.afs.collection('orders', ref => ref.where('id', '==', orderId)).snapshotChanges();
+  }
+
+  dispatchOrder(orderId, order) {
+    return this.afs.collection(`orders`).doc(orderId).update(order);
   }
 }

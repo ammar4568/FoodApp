@@ -70,10 +70,21 @@
               <option *ngFor="let category of categories | async">{{category.name}}</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="inputIngredientName">Ingredient Name</label>
-            <input type="text" class="form-control" id="inputIngredientName" placeholder="Ingredient Name"
-              formControlName="name">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputIngredientName">Ingredient Name</label>
+                <input type="text" class="form-control" id="inputIngredientName" placeholder="Ingredient Name"
+                  formControlName="name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputRda">RDA</label>
+                <input type="text" class="form-control" id="inputRda" placeholder="RDA %"
+                  formControlName="rda">
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-6">
@@ -88,6 +99,22 @@
                 <label for="inputPortionSize">Portion Size</label>
                 <input type="number" class="form-control" id="inputPortionSize" placeholder="Portion Size"
                   formControlName="portionSize">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputPortionFlag">Flag If x > Portion</label>
+                <input type="number" max="10" class="form-control" id="inputPortionFlag"
+                  placeholder="Flag If x > Portion" formControlName="portionFlag">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputBitternessFlag">Bitterness Flag</label>
+                <input type="text" class="form-control" id="inputBitternessFlag" placeholder="Bitterness Flag"
+                  formControlName="bitternessFlag">
               </div>
             </div>
           </div>

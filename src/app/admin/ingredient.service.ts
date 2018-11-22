@@ -53,4 +53,9 @@ export class IngredientService {
   getIngredientByCategory(name) {
     return this.afs.collection('ingredients', ref => ref.where('category', '==', name)).valueChanges();
   }
+
+  getBulkIngredients() {
+    return this.afs.collection('ingredients', ref => ref.where('category', '==', 'Bulk')).valueChanges();
+  }
+
 }

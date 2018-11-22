@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { OrderService } from '../order.service';
 import { RecipeService } from '../recipe.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Validators } from '@angular/forms';
 import swal from 'sweetalert';
 import { User } from 'src/app/models/user';
+import { environment } from '../../../environments/environment';
+import { PaymentService } from 'src/app/payments/payment.service';
+import { AuthService } from 'src/app/core/auth.service';
+declare var $: any;
 
 @Component({
   selector: 'app-cart',
@@ -14,10 +18,16 @@ import { User } from 'src/app/models/user';
 })
 export class CartComponent implements OnInit {
 
+  handler: any;
+  amount = 500;
+
   recipeList;
   contactForm: FormGroup;
   currentUser: User;
+  user;
+  orderId;
   privacy = 'publish';
+  notLoggedIn;
 
   formErrors = {
     'barName': '',
@@ -72,7 +82,19 @@ export class CartComponent implements OnInit {
   constructor(private orderService: OrderService,
     private recipeService: RecipeService,
     private fb: FormBuilder,
-    private router: Router) {
+    private router: Router,
+    private route: ActivatedRoute,
+    private paymentSvc: PaymentService,
+    public auth: AuthService) {
+    this.auth.user.subscribe(user => {
+      if (!user) {
+        this.notLoggedIn = true;
+        $('#loginModal').modal('show');
+      } else {
+        this.user = user.uid;
+        $('#loginModal').modal('hide');
+      }
+    });
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -113,10 +135,49 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.handler = StripeCheckout.configure({
+      key: environment.stripeKey,
+      locale: 'auto',
+      token: token => {
+        this.paymentSvc.processPayment(token, this.amount, this.orderId)
+          .then(() => {
+            this.router.navigate(['thankyou']);
+          })
+          .catch(() => {
+            console.log('Failed');
+          });
+        // console.log(token);
+      }
+    });
     this.orderService.currentOrderList.subscribe(list => this.recipeList = list);
-    if (this.recipeList === '') {
-      this.router.navigate(['order']);
-    }
+
+    this.route.queryParams.subscribe(params => {
+      // console.log(params.barId);
+      if (params.barId) {
+
+        this.recipeService.getRecipe(params.barId).subscribe((item) => {
+          this.recipeList = Object.assign([], item);
+          this.orderService.setRecipeList(this.recipeList);
+        });
+      } else if (this.recipeList === '') {
+        this.router.navigate(['order']);
+      }
+    });
+
+  }
+
+  handlePayment() {
+    this.handler.open({
+      name: 'Food App',
+      description: 'Deposit Funds',
+      amount: this.amount
+    });
+  }
+
+  @HostListener('window:popstate')
+  onpopstate() {
+    this.handler.close();
   }
 
   removeItem(item) {
@@ -134,17 +195,24 @@ export class CartComponent implements OnInit {
     if (!this.contactForm.valid) {
       swal({ title: 'Please fill all the form fields' });
     } else {
+      this.recipeList.privacy = this.privacy;
+      this.recipeList.barName = this.contactForm.value['barName'];
       this.recipeService.createRecipe(this.recipeList)
         .then((res) => {
           // alert('Placed \nOrder Id:  ' + res.id);
           this.contactForm.addControl('id', new FormControl(res.id));
           this.contactForm.addControl('privacy', new FormControl(this.privacy));
           this.contactForm.addControl('uid', new FormControl(this.currentUser.uid));
+          this.contactForm.addControl('status', new FormControl(''));
           this.orderService.addCustomerDetails(this.contactForm.value)
             .then((resp) => {
               this.orderService.setOrderContact(this.contactForm.value);
-              // console.log(resp);
-              this.router.navigate(['thankyou']);
+              this.orderId = resp.id;
+              this.handlePayment();
+
+              // console.log(resp.id);
+              // this.handlePayment();
+              // this.router.navigate(['thankyou']);
             })
             .catch(er => {
               console.log(er);

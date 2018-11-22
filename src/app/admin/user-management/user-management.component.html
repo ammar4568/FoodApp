@@ -29,15 +29,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users | async">
+        <tr *ngFor="let user of users | async;let i = index" [attr.data-index]="i">
           <td>{{user.displayName}}</td>
           <td>{{user.email}}</td>
           <td>{{user.phone}}</td>
           <td>
             <div class="onoffswitch">
-              <input type="checkbox" (click)="changeType(user, $event)" name="onoffswitch" class="onoffswitch-checkbox"
-                id="myonoffswitch" checked="{{user.isAdmin? 'checked': ''}}">
-              <label class="onoffswitch-label" for="myonoffswitch">
+              <input type="checkbox" (click)="changeType(user, $event)" name="onoffswitch"
+                class="onoffswitch-checkbox" id="myonoffswitch{{i}}" checked="{{user.isAdmin? 'checked': ''}}">
+              <label class="onoffswitch-label" for="myonoffswitch{{i}}">
                 <span class="onoffswitch-inner"></span>
                 <span class="onoffswitch-switch"></span>
               </label>

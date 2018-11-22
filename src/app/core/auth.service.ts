@@ -9,6 +9,7 @@ import { switchMap } from 'rxjs/operators';
 
 
 import { User } from '../models/user';
+import { UserService } from '../admin/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
 
   user: Observable<User>;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private userService: UserService) {
     this.user = this.afAuth.authState
       .pipe(switchMap(user => {
         if (user) {
@@ -38,7 +39,14 @@ export class AuthService {
       .then((credential: any) => {
         const token = credential.credential.idToken;
         localStorage.setItem('currentUserToken', JSON.stringify({ token: token }));
-        this.updateUserData(credential.user);
+        // console.log(credential.user.uid);
+        this.userService.getUser(credential.user).subscribe(user => {
+          if (!user.length) {
+            this.updateUserData(credential.user);
+          } else {
+            localStorage.setItem('currentUser', JSON.stringify(credential.user));
+          }
+        });
       });
   }
 

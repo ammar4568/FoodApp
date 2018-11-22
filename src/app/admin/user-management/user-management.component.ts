@@ -21,7 +21,7 @@ export class UserManagementComponent implements OnInit {
 
   changeType(user, event) {
     // console.log(user); // Get the user
-    // console.log(event.target.checked); // check if
+    // console.log(event.target); // check if
     this.userService.changeType(user, event.target.checked);
     // document.getElementById('onoffswitch').checked;
   }
