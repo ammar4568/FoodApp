@@ -36,7 +36,7 @@ export class CreateOrderComponent implements OnInit {
     private router: Router,
     public recipeService: RecipeService,
     private route: ActivatedRoute,
-    private auth: AuthService) {
+    public auth: AuthService) {
 
     this.auth.user.subscribe(user => {
       if (!user) {

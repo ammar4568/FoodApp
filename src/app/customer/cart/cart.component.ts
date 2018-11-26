@@ -19,7 +19,7 @@ declare var $: any;
 export class CartComponent implements OnInit {
 
   handler: any;
-  amount = 500;
+  amount = 6000;
 
   recipeList;
   contactForm: FormGroup;
@@ -28,6 +28,8 @@ export class CartComponent implements OnInit {
   orderId;
   privacy = 'publish';
   notLoggedIn;
+
+  closedStripe = true;
 
   formErrors = {
     'barName': '',
@@ -140,6 +142,7 @@ export class CartComponent implements OnInit {
       key: environment.stripeKey,
       locale: 'auto',
       token: token => {
+        this.closedStripe = false;
         this.paymentSvc.processPayment(token, this.amount, this.orderId)
           .then(() => {
             this.router.navigate(['thankyou']);
@@ -148,6 +151,23 @@ export class CartComponent implements OnInit {
             console.log('Failed');
           });
         // console.log(token);
+      },
+      closed: () => {
+        if (this.closedStripe) {
+          // Delete Order
+          this.orderService.getRecipeId(this.orderId).subscribe((order: any) => {
+            this.orderService.deleteOrder(this.orderId)
+              .then(() => {
+                this.recipeService.deleteRecipe(order.id)
+                  .then(() => {
+                    console.log('Deleted');
+                  })
+                  .catch(() => {
+                    console.log('Cannot Delete Recipe');
+                  });
+              });
+          });
+        }
       }
     });
     this.orderService.currentOrderList.subscribe(list => this.recipeList = list);
@@ -188,6 +208,9 @@ export class CartComponent implements OnInit {
 
   onRadioSwith(event) {
     this.privacy = event.target.value;
+  }
+  onBarSwitch(event) {
+    this.amount = +event.target.value === 30 ? 6000 : 12000;
   }
 
   /* Create Order and Recipe */

@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">My Orders</h3>
+  </div>
+  <div class="panel-body">
+    <!-- <div style="width: 70%; margin: 20px auto; background: #fff"> -->
+    <table *ngIf="myOrders" class="table">
+      <thead>
+        <tr>
+          <th>Bar Name</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>View Order</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of myOrders | async">
+          <td>{{order.barName}}</td>
+          <td>{{order.firstName}} {{order.lastName}}</td>
+          <td *ngIf="order.status">{{order.status}}</td>
+          <td *ngIf="!order.status">pending</td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="getRecipe(order.id)"
+              data-toggle="modal" data-target="#myModal">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<!-- Recipe List Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Recipe List</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Categories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let recipe of recipeList">
+              <td>{{recipe.name}} </td>
+              <td>{{recipe.quantity}}</td>
+              <td>{{recipe.category}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -13,9 +13,11 @@ export class OrderManagementComponent implements OnInit {
   orderList;
   recipeList;
   currentOrder;
+  dispatched;
 
   constructor(private orderService: OrderService,
     private recipeService: RecipeService) {
+    this.dispatched = false;
     this.orderList = this.orderService.getUndispatchedOrders();
   }
 
@@ -39,13 +41,23 @@ export class OrderManagementComponent implements OnInit {
         const id = a.payload.doc.id;
         this.orderService.dispatchOrder(id, order)
           .then(() => {
-            console.log('Dispatched');
+            // console.log('Dispatched');
           })
           .catch(() => {
-            console.log('Error');
+            // console.log('Error');
           });
       });
     });
+  }
+
+  showDispatched() {
+    this.dispatched = true;
+    this.orderList = this.orderService.getDispatchedOrders();
+  }
+
+  showUndispatched() {
+    this.dispatched = false;
+    this.orderList = this.orderService.getUndispatchedOrders();
   }
 
 }

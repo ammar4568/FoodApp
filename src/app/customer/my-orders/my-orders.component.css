@@ -1,0 +1,9 @@
+.panel-heading {
+    color: whitesmoke;
+    background-color: #426A89;
+}
+
+.panel {
+    width: 80%;
+    margin: 20px auto;
+}

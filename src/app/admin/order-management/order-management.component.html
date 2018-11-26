@@ -1,6 +1,20 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Order Management</h3>
+    <div class="row">
+      <div class="col-md-7" style="margin-top: 4px;">
+        <h3 class="panel-title">Order Management</h3>
+      </div>
+      <div class="col-md-2" *ngIf="!dispatched">
+        <button class=" btn btn-success" (click)="showDispatched()">
+          Show Dispatched Orders
+        </button>
+      </div>
+      <div class="col-md-2" *ngIf="dispatched">
+        <button class="btn btn-success" (click)="showUndispatched()">
+          Show Undispatched Orders
+        </button>
+      </div>
+    </div>
   </div>
   <div class="panel-body">
     <table class="table">
@@ -13,7 +27,7 @@
           <th>Delivery Day</th>
           <th>Info</th>
           <th>View Order</th>
-          <th>Status</th>
+          <th *ngIf="!dispatched">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +45,7 @@
             <button type="button" class="btn btn-info" (click)="getRecipe(order.id)"
               data-toggle="modal" data-target="#myModal">View</button>
           </td>
-          <td>
+          <td *ngIf="!dispatched">
             <button type="button" class="btn btn-success" (click)="dispatchOrder(order)">Dispatch</button>
           </td>
         </tr>
@@ -42,7 +56,6 @@
 
 
 <!-- Recipe List Modal -->
-<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -78,6 +91,7 @@
   </div>
 </div>
 
+<!-- Info Modal -->
 <div id="infoModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 

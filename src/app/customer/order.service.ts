@@ -52,6 +52,18 @@ export class OrderService {
   }
 
   dispatchOrder(orderId, order) {
-    return this.afs.collection(`orders`).doc(orderId).update(order);
+    return this.afs.collection('orders').doc(orderId).update(order);
+  }
+
+  getUsersOrder(userId) {
+    return this.afs.collection('orders', ref => ref.where('uid', '==', userId)).valueChanges();
+  }
+
+  deleteOrder(orderId) {
+    return this.afs.collection('orders').doc(orderId).delete();
+  }
+
+  getRecipeId(orderId) {
+    return this.afs.collection('orders').doc(orderId).valueChanges();
   }
 }

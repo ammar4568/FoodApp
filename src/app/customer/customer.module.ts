@@ -11,6 +11,7 @@ import { OrderConfirmedComponent } from './order-confirmed/order-confirmed.compo
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     CartHeaderComponent,
     OrderConfirmedComponent,
     ContactUsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    MyOrdersComponent
   ]
 })
 export class CustomerModule { }

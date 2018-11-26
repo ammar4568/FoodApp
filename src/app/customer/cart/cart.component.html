@@ -223,7 +223,26 @@
                             <label><input type="radio" value="private" name="privacy" (click)="onRadioSwith($event)"
                                     class="icheck">Private</label>
                         </div>
-                    </div><!-- Edn options 2 -->
+                    </div>
+                    <hr>
+                    <div class="row" id="options_2" style="margin-top: 10px;">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                            <label>
+                                <input type="radio" value="30" checked (click)="onBarSwitch($event)"
+                                    name="barSize" class="icheck">30 Bar
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                            <label>
+                                <input type="radio" value="60" class="icheck" name="barSize"
+                                    (click)="onBarSwitch($event)">60 Bar
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Edn options 2 -->
                     <!-- <hr>
                     <table class="table table_summary">
                         <tbody>
@@ -244,6 +263,10 @@
                             </tr>
                         </tbody>
                     </table> -->
+                    <hr>
+                    <div>
+                        <p>Total Amount: $ {{this.amount / 100}} </p>
+                    </div>
                     <hr>
                     <a class="btn_full" (click)="submitContact()">Confirm</a>
                     <!-- <a class="btn_full_outline" navigate()><i class="icon-right"></i>

@@ -18,7 +18,7 @@ export class RecipeService {
   }
 
   getRecipes() {
-    return this.afs.collection('recipe').valueChanges();
+    return this.afs.collection('recipe').snapshotChanges();
   }
 
   getRecipesDoc() {
@@ -29,5 +29,9 @@ export class RecipeService {
         return { id, ...data };
       }))
     );
+  }
+
+  deleteRecipe(recipeId) {
+    return this.afs.collection('recipe').doc(recipeId).delete();
   }
 }

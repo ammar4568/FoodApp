@@ -8,6 +8,7 @@ import { OrderConfirmedComponent } from './customer/order-confirmed/order-confir
 import { AuthGuard } from './core/auth.guard';
 import { ContactUsComponent } from './customer/contact-us/contact-us.component';
 import { AboutUsComponent } from './customer/about-us/about-us.component';
+import { MyOrdersComponent } from './customer/my-orders/my-orders.component';
 
 export const routes: Routes = [
     // { path: '**', component } // Unknown Route
@@ -18,5 +19,6 @@ export const routes: Routes = [
     { path: 'cart', component: CartComponent },
     { path: 'thankyou', component: OrderConfirmedComponent },
     { path: 'contactus', component: ContactUsComponent },
-    { path: 'aboutus', component: AboutUsComponent }
+    { path: 'aboutus', component: AboutUsComponent },
+    { path: 'my-orders', component: MyOrdersComponent }
 ];

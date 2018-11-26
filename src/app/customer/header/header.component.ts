@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
   }
 
   navigate(link) {
-    // console.log('show');
     this.router.navigate([`${link}`]);
   }
 
@@ -41,5 +40,9 @@ export class HeaderComponent implements OnInit {
   search() {
     const query = (<HTMLInputElement>document.getElementById('search-bar')).value;
     this.queryEmitter.emit(query);
+  }
+
+  viewOrders() {
+    this.router.navigate(['my-orders']);
   }
 }
