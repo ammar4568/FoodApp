@@ -1,13 +1,9 @@
-.parallax {
-    /* The image used */
-    background-image: url("../../../assets/img/muesli.jpg");
-    /* Set a specific height */
+/* .parallax {
+    background-image: url("../../../assets/img/home.jpg");
     height: 400px;
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
     opacity: 0.9;
-}
+} */

@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     private recipeService: RecipeService,
     private orderService: OrderService) {
 
-    this.orderList = this.orderService.getOrders();
+    this.orderList = this.orderService.getPublishedOrders();
 
   }
 

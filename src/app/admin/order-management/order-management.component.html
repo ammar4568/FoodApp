@@ -25,6 +25,7 @@
           <th>Mobile No</th>
           <th>Delivery Time</th>
           <th>Delivery Day</th>
+          <th>Payment Status</th>
           <th>Info</th>
           <th>View Order</th>
           <th *ngIf="!dispatched">Status</th>
@@ -37,6 +38,7 @@
           <td> {{order.mobile}} </td>
           <td> {{order.deliveryTime}} </td>
           <td> {{order.deliveryDay}} </td>
+          <td> {{order.paymentStatus}} </td>
           <td>
             <button type="button" class="btn btn-dark" (click)="setCurrentOrder(order)"
               data-toggle="modal" data-target="#infoModal"><i class="fa fa-info"></i></button>

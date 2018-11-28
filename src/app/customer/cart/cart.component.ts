@@ -144,13 +144,32 @@ export class CartComponent implements OnInit {
       token: token => {
         this.closedStripe = false;
         this.paymentSvc.processPayment(token, this.amount, this.orderId)
-          .then(() => {
-            this.router.navigate(['thankyou']);
-          })
-          .catch(() => {
-            console.log('Failed');
+          .subscribe((res: any) => {
+            if (+res.statusCode === 400) {
+              this.paymentSvc.addPayment(token, this.amount, this.orderId, null, null)
+                .then(() => {
+                  this.orderService.changePaymentStatus(this.orderId, 'unpaid')
+                    .then(() => {
+                      console.log('Cannot Charge');
+                    });
+                })
+                .catch(() => {
+                  console.log('Error Cannot Charge');
+                });
+            } else if (res.status === 'succeeded') {
+              this.paymentSvc.addPayment(token, this.amount, this.orderId, 'paid', res)
+                .then(() => {
+                  // console.log('Charged');
+                  this.orderService.changePaymentStatus(this.orderId, 'paid')
+                    .then(() => {
+                      this.router.navigate(['thankyou']);
+                    });
+                })
+                .catch(() => {
+                  console.log('Error Charge');
+                });
+            }
           });
-        // console.log(token);
       },
       closed: () => {
         if (this.closedStripe) {

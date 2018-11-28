@@ -12,7 +12,8 @@
         <tr>
           <th>Bar Name</th>
           <th>Name</th>
-          <th>Status</th>
+          <th>Delivery Status</th>
+          <th>Payment Status</th>
           <th>View Order</th>
         </tr>
       </thead>
@@ -22,10 +23,15 @@
           <td>{{order.firstName}} {{order.lastName}}</td>
           <td *ngIf="order.status">{{order.status}}</td>
           <td *ngIf="!order.status">pending</td>
+          <td>{{order.paymentStatus}}</td>
           <td>
             <button type="button" class="btn btn-info" (click)="getRecipe(order.id)"
               data-toggle="modal" data-target="#myModal">View</button>
           </td>
+          <!-- <td *ngIf="order.paymentStauts == unpaid">
+            <button type="button" class="btn btn-success" (click)="getRecipe(order.id)"
+              data-toggle="modal" data-target="#myModal">Pay</button>
+          </td> -->
         </tr>
       </tbody>
     </table>

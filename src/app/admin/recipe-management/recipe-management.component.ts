@@ -13,7 +13,7 @@ export class RecipeManagementComponent implements OnInit {
   recipes;
   constructor(private recipeService: RecipeService,
     private orderService: OrderService) {
-    this.recipes = this.recipeService.getRecipes().pipe(
+    this.recipes = this.recipeService.getPublishedRecipes().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data();
         const id = a.payload.doc.id;
@@ -29,11 +29,11 @@ export class RecipeManagementComponent implements OnInit {
     this.orderService.getOrderId(recipeId).subscribe(item => {
       item.map(i => {
         const orderId = i.payload.doc.id;
-        this.recipeService.deleteRecipe(recipeId)
+        this.recipeService.makeRecipePrivate(recipeId)
           .then(() => {
-            this.orderService.deleteOrder(orderId)
+            this.orderService.makeOrderPrivate(orderId)
               .then(() => {
-                // console.log('Successfully Deleted');
+                console.log('Made Private');
               })
               .catch(() => {
                 // console.log('Cannot Delete');

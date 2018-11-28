@@ -80,7 +80,7 @@ export class CreateOrderComponent implements OnInit {
       });
     });
     // this.ingredients = this.ingredientService.getAllIngredients();
-    this.orders = this.orderService.getOrders();
+    // this.orders = this.orderService.getOrders();
   }
 
   ngOnInit() {

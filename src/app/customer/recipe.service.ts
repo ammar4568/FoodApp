@@ -21,6 +21,10 @@ export class RecipeService {
     return this.afs.collection('recipe').snapshotChanges();
   }
 
+  getPublishedRecipes() {
+    return this.afs.collection('recipe', ref => ref.where('privacy', '==', 'publish')).snapshotChanges();
+  }
+
   getRecipesDoc() {
     return this.afs.collection('recipe').snapshotChanges().pipe(
       map(x => x.map(a => {
@@ -33,5 +37,9 @@ export class RecipeService {
 
   deleteRecipe(recipeId) {
     return this.afs.collection('recipe').doc(recipeId).delete();
+  }
+
+  makeRecipePrivate(recipeId) {
+    return this.afs.collection('recipe').doc(recipeId).set({ 'privacy': 'private' }, { merge: true });
   }
 }

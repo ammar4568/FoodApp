@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
+import { merge } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,24 @@ export class OrderService {
     return this.afs.collection('orders').valueChanges();
   }
 
+  getPublishedOrders() {
+    return this.afs.collection('orders', ref => ref.where('privacy', '==', 'publish')).valueChanges();
+  }
+
   getUndispatchedOrders() {
     return this.afs.collection('orders', ref => ref.where('status', '==', '')).valueChanges();
   }
 
+  getUndispatchedOrdersSnap() {
+    return this.afs.collection('orders', ref => ref.where('status', '==', '')).snapshotChanges();
+  }
+
   getDispatchedOrders() {
     return this.afs.collection('orders', ref => ref.where('status', '==', 'dispatched')).valueChanges();
+  }
+
+  getDispatchedOrdersSnap() {
+    return this.afs.collection('orders', ref => ref.where('status', '==', 'dispatched')).snapshotChanges();
   }
 
   addCustomerDetails(customerInfo) {
@@ -47,8 +60,8 @@ export class OrderService {
   }
 
 
-  getOrderId(orderId) {
-    return this.afs.collection('orders', ref => ref.where('id', '==', orderId)).snapshotChanges();
+  getOrderId(id) {
+    return this.afs.collection('orders', ref => ref.where('id', '==', id)).snapshotChanges();
   }
 
   dispatchOrder(orderId, order) {
@@ -63,7 +76,15 @@ export class OrderService {
     return this.afs.collection('orders').doc(orderId).delete();
   }
 
+  makeOrderPrivate(orderId) {
+    return this.afs.collection('orders').doc(orderId).set({ 'privacy': 'private' }, { merge: true });
+  }
+
   getRecipeId(orderId) {
     return this.afs.collection('orders').doc(orderId).valueChanges();
+  }
+
+  changePaymentStatus(orderId, paymentStatus) {
+    return this.afs.collection('orders').doc(orderId).set({ 'paymentStatus': paymentStatus }, { merge: true });
   }
 }
