@@ -138,10 +138,10 @@ export class CreateOrderComponent implements OnInit {
   addToList(event, ingredient) {
     if (event.target.checked) {
       ingredient.quantity = 1;
-      if ((this.barWeight + ingredient.portionSize) > 70) {
+      if ((this.barWeight + ingredient.portionSize) > 85) {
         swal({
           type: 'error',
-          text: 'Bar weight cannot be greater than 70gm'
+          text: 'Bar weight cannot be greater than 85gm'
         });
         const name = ingredient.name.replace(/\s/g, '');
         const x = <HTMLInputElement>document.getElementById(`check${name}`);
@@ -161,7 +161,7 @@ export class CreateOrderComponent implements OnInit {
 
       // no?? add it to total only
 
-      // also check if total weight is greater than 70 gram
+      // also check if total weight is greater than 85 gram
 
       this.ingredientOrderList.push(ingredient);
     } else {
@@ -196,7 +196,8 @@ export class CreateOrderComponent implements OnInit {
         } else {
           this.barWeight -= ingredient.portionSize;
         }
-        if (ingredient.quantity < 7) {
+        // const quantity = ingredient.portionFlag ? ingredient.portionFlag : 7;
+        if (ingredient.quantity < ingredient.portionFlag) {
           ingredient.plus = false;
         }
       }
@@ -205,11 +206,11 @@ export class CreateOrderComponent implements OnInit {
       if (ingredient.quantity === 10) {
         return;
       }
-      if ((this.barWeight + ingredient.portionSize) > 70) {
-        // alert('Cannot be greater than 70gm');
+      if ((this.barWeight + ingredient.portionSize) > 85) {
+        // alert('Cannot be greater than 85gm');
         swal({
           type: 'error',
-          text: 'Bar weight cannot be greater than 70gm'
+          text: 'Bar weight cannot be greater than 85gm'
         });
         return;
       }
@@ -221,7 +222,7 @@ export class CreateOrderComponent implements OnInit {
         this.barWeight += ingredient.portionSize;
       }
       const quantity = ingredient.portionFlag ? ingredient.portionFlag : 7;
-      if (ingredient.quantity === quantity) {
+      if (ingredient.quantity === quantity && (ingredient.portionFlag !== 0)) {
 
         const swalWithBootstrapButtons = swal.mixin({
           confirmButtonClass: 'btn btn-success',
@@ -235,7 +236,29 @@ export class CreateOrderComponent implements OnInit {
           html: `Adding more of this ingredient can make the Bar<b> ${ingredient.bitternessFlag}</b>`,
           type: 'warning',
           showCancelButton: true,
-          confirmButtonText: 'Yes, dont\'t add more!',
+          confirmButtonText: 'Yes, don\'t add more!',
+          cancelButtonText: 'Ignore!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.value) {
+            ingredient.plus = true;
+          } else if (result.dismiss === swal.DismissReason.cancel) {
+
+          }
+        });
+      } else if (ingredient.quantity === ingredient.unhealthyFlag && (ingredient.unhealthyFlag !== 0)) {
+        const swalWithBootstrapButtons = swal.mixin({
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons({
+          title: 'Unhealthy level reached?',
+          html: `Adding more of this ingredient can make the Bar Unhealthy`,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Yes, don\'t add more!',
           cancelButtonText: 'Ignore!',
           reverseButtons: true
         }).then((result) => {
@@ -270,19 +293,19 @@ export class CreateOrderComponent implements OnInit {
       });
       return;
     }
-    if (this.barWeight < 55) {
-      // alert('Bar weight must be greater than 55gm');
+    if (this.barWeight < 70) {
+      // alert('Bar weight must be greater than 70gm');
       swal({
         type: 'error',
-        text: 'Bar weight must be greater than 55gm'
+        text: 'Bar weight must be greater than 70gm'
       });
       return;
     }
-    if (this.barWeight > 75) {
-      // alert('Bar weight must be less than 55gm');
+    if (this.barWeight > 85) {
+      // alert('Bar weight must be less than 85gm');
       swal({
         type: 'error',
-        text: 'Bar weight must be less than 55gm'
+        text: 'Bar weight must be less than 85gm'
       });
       return;
     }

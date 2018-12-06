@@ -132,8 +132,8 @@
                                     formControlName="deliveryDay" name="delivery_schedule_day"
                                     id="delivery_schedule_day" required>
                                     <option value="" selected>Select day</option>
-                                    <option value="Today">Today</option>
-                                    <option value="Tomorrow">Tomorrow</option>
+                                    <option value="tomorrow">Next Day (+$20)</option>
+                                    <option value="3-4days">Next 3-4 Days</option>
                                 </select>
                                 <div *ngIf="formErrors.deliveryDay && contactForm.controls['deliveryDay']?.touched"
                                     class="alert alert-danger">
@@ -178,11 +178,9 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-
                             <label>Notes for the restaurant</label>
                             <textarea class="form-control" formControlName="notes" style="height:150px"
                                 placeholder="Ex. Allergies, cash change..." name="notes" id="notes"></textarea>
-
                         </div>
                     </div>
                 </form>
@@ -265,7 +263,9 @@
                     </table> -->
                     <hr>
                     <div>
-                        <p>Total Amount: $ {{this.amount / 100}} </p>
+                        <b>
+                            <p>Total Amount: $ {{this.amount / 100}} </p>
+                        </b>
                     </div>
                     <hr>
                     <a class="btn_full" (click)="submitContact()">Confirm</a>

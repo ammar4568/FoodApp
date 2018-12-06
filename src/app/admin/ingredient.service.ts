@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { merge } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +59,7 @@ export class IngredientService {
     return this.afs.collection('ingredients', ref => ref.where('category', '==', 'Bulk')).valueChanges();
   }
 
+  getAllIngredientsTemp() {
+    return this.afs.collection('ingredients').snapshotChanges();
+  }
 }

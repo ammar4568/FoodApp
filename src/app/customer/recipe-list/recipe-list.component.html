@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<table style="width: 70%; margin: 0 auto;" class="table">
+  <thead>
+    <tr>
+      <th>Bar Name</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let order of orderList">
+    <tr>
+      <th>{{order.barName}}</th>
+      <th>{{order.firstName}} {{order.lastName}}</th>
+    </tr>
+  </tbody>
+</table>
+
+<app-footer></app-footer>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { OrderService } from '../order.service';
+import { AuthService } from 'src/app/core/auth.service';
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,6 @@ import { OrderService } from '../order.service';
 export class HomeComponent implements OnInit {
 
   searchItems;
-
   loadSpinner = true;
   orderList;
   recipeList;
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   constructor(public router: Router,
     private recipeService: RecipeService,
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    public auth: AuthService) {
 
     this.orderList = this.orderService.getPublishedOrders();
 
@@ -41,7 +43,13 @@ export class HomeComponent implements OnInit {
 
   placeOrder() {
     // console.log(this.currentBarId);
-    this.router.navigate(['cart'], { queryParams: { barId: this.currentBarId } });
+    this.auth.user.subscribe(user => {
+      if (user) {
+        this.router.navigate(['cart'], { queryParams: { barId: this.currentBarId } });
+      } else {
+        $('#login_2').modal('show');
+      }
+    });
   }
 
   search(term) {

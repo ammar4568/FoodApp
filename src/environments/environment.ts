@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyDQFM9qGkx-xE5Du-7wiGW3PU3FEf61Gjk',
-    authDomain: 'foodapp-2c8bf.firebaseapp.com',
-    databaseURL: 'https://foodapp-2c8bf.firebaseio.com',
-    projectId: 'foodapp-2c8bf',
-    storageBucket: '',
-    messagingSenderId: '1058178855522'
+    apiKey: 'AIzaSyADKDOngPhbb9gGmLeyQaMtG3c8Lbw1T9o',
+    authDomain: 'food-app-fd086.firebaseapp.com',
+    databaseURL: 'https://food-app-fd086.firebaseio.com',
+    projectId: 'food-app-fd086',
+    storageBucket: 'food-app-fd086.appspot.com',
+    messagingSenderId: '57097934979'
   },
-  stripeKey: 'pk_test_vXAWdJvKCqroSfeXXol2afN7'
+  stripeKey: 'pk_test_uGBo2gTRYmpQ78swjYlVeOAc'
 };
 
 /*

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderService } from '../order.service';
 import { AuthService } from 'src/app/core/auth.service';
+declare var $: any;
 
 @Component({
   selector: 'app-order-confirmed',
@@ -15,6 +16,7 @@ export class OrderConfirmedComponent implements OnInit {
   constructor(private orderService: OrderService,
     private router: Router,
     public auth: AuthService) {
+    $('html,body').scrollTop(0);
     auth.user.subscribe(user => {
       this.user = user;
     });

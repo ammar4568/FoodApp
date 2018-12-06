@@ -31,7 +31,7 @@
     <h2 class="nomargin_top" style="padding-top:0">How it works</h2>
   </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="box_home" id="one">
         <span>1</span>
         <h3>Search by formula</h3>
@@ -40,7 +40,7 @@
         </p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="box_home" id="two">
         <span>2</span>
         <h3>Customize your order</h3>
@@ -49,7 +49,7 @@
         </p>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="box_home" id="three">
         <span>3</span>
         <h3>Pay by card or cash</h3>
@@ -58,7 +58,7 @@
         </p>
       </div>
     </div>
-    <div class="col-md-3">
+    <!-- <div class="col-md-3">
       <div class="box_home" id="four">
         <span>4</span>
         <h3>Delivery or takeaway</h3>
@@ -66,13 +66,13 @@
           You are lazy? Are you backing home?
         </p>
       </div>
-    </div>
+    </div> -->
   </div><!-- End row -->
 
-  <div id="delivery_time" class="hidden-xs">
+  <!-- <div id="delivery_time" class="hidden-xs">
     <strong><span>2</span><span>5</span></strong>
     <h4>The minutes that usually takes to deliver!</h4>
-  </div>
+  </div> -->
 </div><!-- End container -->
 
 <div class="white_bg">
@@ -84,7 +84,7 @@
 
 
     <div class="row">
-      <div *ngFor="let order of orderList | async; let idx = index" class="col-md-6">
+      <div *ngFor="let order of orderList | async; let idx = index" class="col-md-4">
         <a *ngIf="idx < 6" class="strip_list" (click)="getRecipe(order.id)" data-toggle="modal"
           data-target="#myModal">
           <div class="ribbon_1">Popular</div>
@@ -92,18 +92,18 @@
             <!-- <div class="thumb_strip">
               <img src="../../../assets/img/thumb_restaurant.jpg" alt="">
             </div> -->
-            <div class="rating">
+            <!-- <div class="rating">
               <i class="fa fa-star star"></i><i class="fa fa-star star"></i><i class="fa fa-star star"></i>
               <i class="fa fa-star star"></i><i class="fa fa-star star"></i>
-            </div>
+            </div> -->
             <h3>{{order.barName}}</h3>
             <div class="type">
               {{order.firstName}} {{order.lastName}}
             </div>
-            <ul>
+            <!-- <ul>
               <li>Take away <span class="icon"><i class="fa fa-motorcycle"></i></span></li>
               <li>Delivery <span class="icon"><i class="fa fa-home"></i></span></li>
-            </ul>
+            </ul> -->
           </div>
         </a>
       </div>
@@ -352,10 +352,25 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-lg btn-primary" style="text-align: center; background: #DF4F67;"
+        <button type="button" class="btn btn-lg btn-primary" style="text-align: center; background: #DF4F67; margin-right: 195px; width: 150px;"
           data-dismiss="modal" (click)="placeOrder()">Order</button>
       </div>
     </div>
 
+  </div>
+</div>
+
+<div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin"
+  aria-hidden="true" style="margin-top: 30px;" style="position: fixed !important; top: 10px !important; right: 0; left: 0;">
+  <div class="modal-dialog">
+    <div class="modal-content modal-popup">
+      <a style="cursor: pointer;" class="close-link"><i class="fa fa-times"></i></a>
+      <form action="#" class="popup-form" id="myLogin">
+        <div class="login_icon"><i class="fa fa-lock"></i></div>
+        <button class="btn btn-danger close-link" (click)="auth.googleLogin()">
+          <i class="fa fa-google"></i> Connect Google
+        </button>
+      </form>
+    </div>
   </div>
 </div>

@@ -46,7 +46,8 @@ export class IngredientManagementComponent implements OnInit {
       fatCalorie: '',
       proteinCalorie: '',
       bitternessFlag: '',
-      category: ''
+      unhealthyFlag: '',
+      category: '',
     });
 
     this.categoryForm = this.fb.group({
@@ -175,6 +176,7 @@ export class IngredientManagementComponent implements OnInit {
       fatCalorie: '',
       proteinCalorie: '',
       rda: '',
+      unhealthyFlag: '',
       bitternessFlag: '',
       category: ''
     });

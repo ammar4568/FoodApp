@@ -64,11 +64,22 @@
       </div>
       <div class="modal-body" id="ingredientModal">
         <form (ngSubmit)="addIngredient()" [formGroup]="ingredientForm" style="margin: 30px 30px;">
-          <div class="form-group">
-            <label for="inputIngredientCategory">Select Category</label>
-            <select class="form-control" id="inputIngredientCategory" formControlName="category">
-              <option *ngFor="let category of categories | async">{{category.name}}</option>
-            </select>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputIngredientCategory">Select Category</label>
+                <select class="form-control" id="inputIngredientCategory" formControlName="category">
+                  <option *ngFor="let category of categories | async">{{category.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputUnhealthyFlag">Unhealthy Flag</label>
+                <input type="number" max="10" class="form-control" id="inputUnhealthyFlag"
+                  placeholder="Unhealthy Flag" formControlName="unhealthyFlag">
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-md-6">

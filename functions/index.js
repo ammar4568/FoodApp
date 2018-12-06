@@ -1,67 +1,88 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const express = require('express');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 
-admin.initializeApp(functions.config().firebase);
+const app = express();
+app.use(cors({ origin: true }));
 
-const stripe = require('stripe')(functions.config().stripe.testKey);
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
+const mailTransport = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: gmailEmail,
+        pass: gmailPassword,
+    },
+});
 
-exports.stripeCharge = functions.firestore
-    .document('payments/{orderId}')
-    .onWrite(event => {
-        const orderId = event.params.orderId;
-        return admin.firestore().doc(`payments/${orderId}`).set({
-            'test': 'complete'
+const APP_NAME = 'Food App';
+
+
+
+/* 
+app.get('/', (req, res) => res.status(200).send('Sample Get'));
+app.post('/', (req, res) => res.status(200).send('Sample Response'));
+
+
+exports.sendMail = functions.https.onRequest(app);
+ */
+exports.sendMail = functions.https.onRequest((req, res) => {
+    // ...
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const message = req.body.message;
+
+    nodemailer.createTestAccount((err, account) => {
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.ethereal.email',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: account.user, // generated ethereal user
+                pass: account.pass // generated ethereal password
+            }
+        });
+
+        const mailOptions = {
+            // from: `${APP_NAME} <noreply@firebase.com>`,
+            from: 'ammarprojects96@gmail.com',
+            to: email,
+        };
+
+        mailOptions.text = `From ${firstname} ${lastname}. Email: ${email}. Message: ${message}`;
+
+
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                res.status(400).send(err);
+            } else {
+                res.status(200).send(info);
+            }
         })
     })
 
-/* exports.stripeCharge = functions.firestore
-    .document('payments/{orderId}')
-    .onWrite(event => {
-        const payment = event.data.data()
-        const orderId = event.params.orderId
-        // const paymentId = event.params.paymentId
 
-        if (!payment || payment.charge) return
+    /* const mailOptions = {
+        // from: `${APP_NAME} <noreply@firebase.com>`,
+        from: 'ammarprojects96@gmail.com',
+        to: email,
+    };
 
-        return admin.firestore()
-            .doc(`payments/${orderId}`)
-            .get()
-            .then(snapshot => {
-                return snapshot;
-            })
-            .then(order => {
-                const amount = payment.price;
-                const idempotency_key = orderId;
-                const source = payment.token.id;
-                const currency = 'usd';
-                const charge = { amount, currency, source }
+    mailOptions.text = `From ${firstname} ${lastname}. Email: ${email}. Message: ${message}`;
 
-                return stripe.charges.create(charge, { idempotency_key })
-            })
-            .then(charge => {
-                admin.firestore().doc(`payments/${orderId}`).set({
-                    charge: charge
-                }, { merge: true });
-            })
+    mailTransport.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).send(info);
+        }
     }) */
 
-// exports.stripeCharge = functions.firestore.document('/payments/{orderId}')
-//     .onWrite((snap, context) => {
-//         // return snap.data();
-
-//         const payment = snap.data();
-//         orderId = context.params.orderId;
-
-//         if (!payment || payment.charge) {
-//             return;
-//         }
-
-//         const amount = payment.amount;
-//         const idempotency_key = orderId;
-//         const source = payment.token.id;
-//         const currency = 'usd';
-//         const charge = { amount, currency, source };
-
-//         stripe.charges.create(charge, { idempotency_key });
-//         return admin.firestore().collection('payments').doc(orderId).update()
-//     });
+    // res.status(200).send(`Firstname: ${firstname}, 
+    // Lastname: ${lastname}, 
+    // Email: ${email}, 
+    // Message: ${message}`);
+});

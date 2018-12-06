@@ -9,6 +9,7 @@ import { AuthGuard } from './core/auth.guard';
 import { ContactUsComponent } from './customer/contact-us/contact-us.component';
 import { AboutUsComponent } from './customer/about-us/about-us.component';
 import { MyOrdersComponent } from './customer/my-orders/my-orders.component';
+import { RecipeListComponent } from './customer/recipe-list/recipe-list.component';
 
 export const routes: Routes = [
     // { path: '**', component } // Unknown Route
@@ -20,5 +21,6 @@ export const routes: Routes = [
     { path: 'thankyou', component: OrderConfirmedComponent },
     { path: 'contactus', component: ContactUsComponent },
     { path: 'aboutus', component: AboutUsComponent },
-    { path: 'my-orders', component: MyOrdersComponent }
+    { path: 'my-orders', component: MyOrdersComponent },
+    { path: 'recipe-list', component: RecipeListComponent }
 ];

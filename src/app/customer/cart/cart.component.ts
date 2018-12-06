@@ -28,6 +28,7 @@ export class CartComponent implements OnInit {
   orderId;
   privacy = 'publish';
   notLoggedIn;
+  extraCharged;
 
   closedStripe = true;
 
@@ -88,6 +89,7 @@ export class CartComponent implements OnInit {
     private route: ActivatedRoute,
     private paymentSvc: PaymentService,
     public auth: AuthService) {
+    this.extraCharged = false;
     this.auth.user.subscribe(user => {
       if (!user) {
         this.notLoggedIn = true;
@@ -115,7 +117,22 @@ export class CartComponent implements OnInit {
     });
 
     this.contactForm.valueChanges.subscribe(data => { this.onValueChanged(data); });
+    this.contactForm.controls['deliveryDay'].valueChanges.subscribe(value => {
+      if (value === 'tomorrow') {
+        if (this.extraCharged) {
+          return;
+        }
+        this.amount += 2000;
+        this.extraCharged = true;
+      } else if (value === '3-4days') {
+        if (this.extraCharged) {
+          this.amount -= 2000;
+          this.extraCharged = false;
+        }
+      }
+    });
   }
+
   onValueChanged(data?: any) {
     if (!this.contactForm) { return; }
 
@@ -132,8 +149,6 @@ export class CartComponent implements OnInit {
         }
       }
     }
-
-
   }
 
   ngOnInit() {
@@ -229,7 +244,21 @@ export class CartComponent implements OnInit {
     this.privacy = event.target.value;
   }
   onBarSwitch(event) {
-    this.amount = +event.target.value === 30 ? 6000 : 12000;
+    if (this.amount === 8000) {
+      if (+event.target.value === 30) {
+        this.amount = 8000;
+      } else {
+        this.amount = 14000;
+      }
+    } else if (this.amount === 14000) {
+      if (+event.target.value === 60) {
+        this.amount = 14000;
+      } else if (+event.target.value === 30) {
+        this.amount = 8000;
+      }
+    } else {
+      this.amount = +event.target.value === 30 ? 6000 : 12000;
+    }
   }
 
   /* Create Order and Recipe */

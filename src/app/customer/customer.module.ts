@@ -12,6 +12,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     OrderConfirmedComponent,
     ContactUsComponent,
     AboutUsComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    RecipeListComponent
   ]
 })
 export class CustomerModule { }
