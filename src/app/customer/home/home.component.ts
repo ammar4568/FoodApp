@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit {
   }
 
   viewAllRecipes() {
-    this.router.navigate(['order'], { queryParams: { display: 'recipes' } });
+    // this.router.navigate(['order'], { queryParams: { display: 'recipes' } });
+    this.router.navigate(['recipe-list']);
   }
 
   placeOrder() {
